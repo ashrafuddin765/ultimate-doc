@@ -1,0 +1,17 @@
+{
+    "name": "ash765/ultimate-doc",
+    "description": "A wordpress documentation plugin",
+    "type": "wordpress-plugin",
+    "license": "GPLv2",
+    "autoload": {
+        "psr-4": {
+            "Ash765\\UltimateDoc\\": "inc/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Ashraf Uddin",
+            "email": "ashrafuddin765@gmail.com"
+        }
+    ]
+}
