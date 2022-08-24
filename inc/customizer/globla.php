@@ -1,12 +1,12 @@
 <?php
-Kirki::add_section( 'docs_global', array(
+new \Kirki\Section( 'docs_global', array(
 	'title'          => esc_html__( 'Global Option', 'ultimate-doc' ),
-	'panel'          => 'ud_panel',
+	'panel'          => 'ultd__panel',
 	'priority'       => 160,
 ) );
 
 
-Kirki::add_field( 'ud_panel', [
+Kirki::add_field( 'ultd__panel', [
 	'type'        => 'slider',
 	'settings'    => 'docs_page_width',
 	'label'       => esc_html__( 'Container Width', 'ultimate-doc' ),
@@ -20,7 +20,7 @@ Kirki::add_field( 'ud_panel', [
 	'transport' => 'postMessage',
 	'js_vars'   => [
 		[
-			'element'  => '.ud-container',
+			'element'  => '.ultd--container',
 			'function' => 'css',
 			'property' => 'max-width',
 			'units'    => 'px',
@@ -29,9 +29,9 @@ Kirki::add_field( 'ud_panel', [
 
 ] );
 
-Kirki::add_field( 'ud_panel', [
+Kirki::add_field( 'ultd__panel', [
 	'type'        => 'color',
-	'settings'    => 'ud_body_bg_color',
+	'settings'    => 'ultd__body_bg_color',
 	'label'       => __( 'Body Background Color', 'ultimate-doc' ),
 	'section'     => 'docs_global',
 	'default'     => '#FFFFFF',
@@ -41,7 +41,7 @@ Kirki::add_field( 'ud_panel', [
 	'transport' => 'postMessage',
 	'js_vars'   => [
 		[
-			'element'  => 'body.ud-body',
+			'element'  => 'body.ultd--body',
 			'function' => 'css',
 			'property' => 'background-color',
 		],
@@ -51,9 +51,9 @@ Kirki::add_field( 'ud_panel', [
 
 // Typography 
 
-Kirki::add_field( 'ud_panel', [
+Kirki::add_field( 'ultd__panel', [
 	'type'        => 'typography',
-	'settings'    => 'ud_typhography',
+	'settings'    => 'ultd__typhography',
 	'label'       => esc_html__( 'Typography', 'ultimate-doc' ),
 	'section'     => 'docs_global',
 	'default'     => [
@@ -72,7 +72,7 @@ Kirki::add_field( 'ud_panel', [
 	],
 ] );
 
-Kirki::add_field( 'ud_panel', [
+Kirki::add_field( 'ultd__panel', [
 	'type'        => 'color',
 	'settings'    => 'body_primary_color',
 	'label'       => __( 'Color', 'ultimate-doc' ),
@@ -84,7 +84,7 @@ Kirki::add_field( 'ud_panel', [
 	'transport' => 'postMessage',
 	'js_vars'   => [
 		[
-			'element'  => 'body.ud-body',
+			'element'  => 'body.ultd--body',
 			'function' => 'css',
 			'property' => 'color',
 		],

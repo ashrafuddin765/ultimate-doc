@@ -21,9 +21,9 @@
         $gridclass = "col-12 col-xl-6";
     }
 ?>
-<div class="ud-main <?php echo esc_attr( $docs ); ?>">
-    <div class="ud-bg-color" >
-        <div class="ud-container">
+<div class="ultd--main <?php echo esc_attr( $docs ); ?>">
+    <div class="ultd--bg-color" >
+        <div class="ultd--container">
             <div class="row">
                 <div class="<?php echo esc_attr( $gridclass ); ?>">
                     <div class="doc-template-header" >
@@ -38,7 +38,7 @@
             </div>
         </div>
     </div>
-    <?php echo do_shortcode( '[ud per_page="'.ud_get_option('docs_posts_per_page', 10).'"]' );?>
+    <?php echo do_shortcode( '[ultd per_page="'.ultd__get_option('docs_posts_per_page', 10).'"]' );?>
 </div>
 </body>
 <?php get_footer(); ?>

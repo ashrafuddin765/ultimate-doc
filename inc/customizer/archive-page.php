@@ -1,11 +1,11 @@
 <?php
-Kirki::add_section( 'docs_archive', array(
+new \Kirki\Section( 'docs_archive', array(
     'title'    => esc_html__( 'Section Page', 'ultimate-doc' ),
-    'panel'    => 'ud_panel',
+    'panel'    => 'ultd__panel',
     'priority' => 160,
 ) );
 
-Kirki::add_field( 'ud_panel', [
+Kirki::add_field( 'ultd__panel', [
     'type'     => 'radio-buttonset',
     'settings' => 'section_design_template',
     'label'    => esc_html__( ' ', 'ultimate-doc' ),
@@ -18,7 +18,7 @@ Kirki::add_field( 'ud_panel', [
     ],
 ] );
 
-Kirki::add_field( 'ud_panel', [
+Kirki::add_field( 'ultd__panel', [
     'type'            => 'radio-image',
     'settings'        => 'section_select_template',
     'label'           => esc_html__( 'Section Doc template', 'ultimate-doc' ),
@@ -26,10 +26,8 @@ Kirki::add_field( 'ud_panel', [
     'default'         => 'section-template-01',
     'priority'        => 10,
     'choices'         => [
-        'section-template-01' => UD_ASSETS_ASSETS . 'section-template-01.png',
-        'section-template-02' => UD_ASSETS_ASSETS . 'section-template-02.png',
-
-
+        'section-template-01' => ULTD_ASSETS_ASSETS . 'section-template-01.png',
+        'section-template-02' => ULTD_ASSETS_ASSETS . 'section-template-02.png',
     ],
     'active_callback' => [
         [
@@ -43,19 +41,26 @@ Kirki::add_field( 'ud_panel', [
 
 if(!is_plugin_active( 'ultimatedoc-pro/ultimate-doc-pro.php' )){
 
-	Kirki::add_field( 'ud_panel', [
+	Kirki::add_field( 'ultd__panel', [
 		'type'        => 'custom',
 		'settings'    => 'section_doc_template_locked',
 		// 'label'       => esc_html__( 'This is the label', 'kirki' ), // optional
 		'section'     => 'docs_archive',
 			'default'         => '
-			<img style="opacity:.6" src="'.UD_ASSETS_ASSETS . 'section-template-03.png" alt="">
+			<img style="opacity:.6" src="'.ULTD_ASSETS_ASSETS . 'section-template-03.png" alt="">
 			',
 		'priority'    => 10,
+        'active_callback' => [
+            [
+                'setting'  => 'section_design_template',
+                'operator' => '===',
+                'value'    => 'design',
+            ],
+        ],
 	] );
 }
 
-Kirki::add_field( 'ud_panel', [
+Kirki::add_field( 'ultd__panel', [
     'type'            => 'textarea',
     'settings'        => 'section_description',
     'label'           => esc_html__( 'Section Description', 'ultimate-doc' ),
@@ -71,7 +76,7 @@ Kirki::add_field( 'ud_panel', [
     ],
 ] );
 
-Kirki::add_field( 'ud_panel', [
+Kirki::add_field( 'ultd__panel', [
     'type'            => 'upload',
     'settings'        => 'section_upload_icon',
     'label'           => esc_html__( 'Section Upload Icon', 'ultimate-doc' ),
@@ -91,11 +96,11 @@ Kirki::add_field( 'ud_panel', [
     ],
 ] );
 
-Kirki::add_field( 'ud_panel', [
+Kirki::add_field( 'ultd__panel', [
     'type'            => 'custom',
     'settings'        => 'header_top',
     'section'         => 'docs_archive',
-    'default'         => '<h3 style="padding:12px 0px; text-align: center; font-size: 16px; background:#ddd; color:#222; margin:0;">' . __( 'Header', 'ud-mini-cart' ) . '</h3>',
+    'default'         => '<h3 style="padding:12px 0px; text-align: center; font-size: 16px; background:#ddd; color:#222; margin:0;">' . __( 'Header', 'ultimate-doc' ) . '</h3>',
     'priority'        => 10,
     'active_callback' => [
         [
@@ -106,7 +111,7 @@ Kirki::add_field( 'ud_panel', [
     ],
 ] );
 
-Kirki::add_field( 'ud_panel', [
+Kirki::add_field( 'ultd__panel', [
     'type'            => 'color',
     'settings'        => 'head_sec_bg',
     'label'           => __( 'Background Color', 'ultimate-doc' ),
@@ -130,7 +135,7 @@ Kirki::add_field( 'ud_panel', [
         ],
     ],
 ] );
-Kirki::add_field( 'ud_panel', [
+Kirki::add_field( 'ultd__panel', [
     'type'            => 'color',
     'settings'        => 'head_sec_title_color',
     'label'           => __( 'Title Color', 'ultimate-doc' ),
@@ -156,7 +161,7 @@ Kirki::add_field( 'ud_panel', [
     ],
 ] );
 
-Kirki::add_field( 'ud_panel', [
+Kirki::add_field( 'ultd__panel', [
     'type'            => 'slider',
     'settings'        => 'sechead_title_font_size',
     'label'           => esc_html__( 'Title Font Size', 'ultimate-doc' ),
@@ -185,7 +190,7 @@ Kirki::add_field( 'ud_panel', [
     ],
 ] );
 
-Kirki::add_field( 'ud_panel', [
+Kirki::add_field( 'ultd__panel', [
     'type'            => 'slider',
     'settings'        => 'sechead_title_gap',
     'label'           => esc_html__( 'Title Gap', 'ultimate-doc' ),
@@ -214,7 +219,7 @@ Kirki::add_field( 'ud_panel', [
     ],
 ] );
 
-Kirki::add_field( 'ud_panel', [
+Kirki::add_field( 'ultd__panel', [
     'type'            => 'color',
     'settings'        => 'head_desc_color',
     'label'           => __( 'Description Color', 'ultimate-doc' ),
@@ -248,7 +253,7 @@ Kirki::add_field( 'ud_panel', [
     ],
 ] );
 
-Kirki::add_field( 'ud_panel', [
+Kirki::add_field( 'ultd__panel', [
     'type'            => 'slider',
     'settings'        => 'sechead_desc_font_size',
     'label'           => esc_html__( 'Description Font Size', 'ultimate-doc' ),
@@ -277,7 +282,7 @@ Kirki::add_field( 'ud_panel', [
     ],
 ] );
 
-Kirki::add_field( 'ud_panel', [
+Kirki::add_field( 'ultd__panel', [
     'type'            => 'slider',
     'settings'        => 'sechead_desc_gap',
     'label'           => esc_html__( 'Description Gap', 'ultimate-doc' ),
@@ -306,11 +311,11 @@ Kirki::add_field( 'ud_panel', [
     ],
 ] );
 
-Kirki::add_field( 'ud_panel', [
+Kirki::add_field( 'ultd__panel', [
     'type'            => 'custom',
     'settings'        => 'section_area',
     'section'         => 'docs_archive',
-    'default'         => '<h3 style="padding:12px 0px; text-align: center; font-size: 16px; background:#ddd; color:#222; margin:0;">' . __( 'Section Area', 'ud-mini-cart' ) . '</h3>',
+    'default'         => '<h3 style="padding:12px 0px; text-align: center; font-size: 16px; background:#ddd; color:#222; margin:0;">' . __( 'Section Area', 'ultimate-doc' ) . '</h3>',
     'priority'        => 10,
     'active_callback' => [
         [
@@ -322,7 +327,7 @@ Kirki::add_field( 'ud_panel', [
 ] );
 
 // background color
-Kirki::add_field( 'ud_panel', [
+Kirki::add_field( 'ultd__panel', [
     'type'            => 'color',
     'settings'        => 'section_area_backgound',
     'label'           => __( 'Content Area Background Color', 'ultimate-doc' ),
@@ -334,7 +339,7 @@ Kirki::add_field( 'ud_panel', [
     'transport'       => 'postMessage',
     'js_vars'         => [
         [
-            'element'  => '.ud-site-main, .ud-site-main.section-template-03',
+            'element'  => '.ultd--site-main, .ultd--site-main.section-template-03',
             'function' => 'css',
             'property' => 'background-color',
         ],
@@ -350,8 +355,8 @@ Kirki::add_field( 'ud_panel', [
 
 // border
 
-Kirki::add_field( 'ud_panel', array(
-    'type'            => 'dimensions',
+new \Kirki\Field\Dimensions(
+     array(
     'settings'        => 'section_border_setting',
     'label'           => esc_attr__( 'Content area Border Width', 'textdomain' ),
     'section'         => 'docs_archive',
@@ -378,7 +383,7 @@ Kirki::add_field( 'ud_panel', array(
 
 // border type
 
-Kirki::add_field( 'ud_panel', [
+Kirki::add_field( 'ultd__panel', [
     'type'            => 'select',
     'settings'        => 'section_border_type',
     'label'           => esc_html__( 'Content area Border Type', 'kirki' ),
@@ -403,7 +408,7 @@ Kirki::add_field( 'ud_panel', [
     'transport'       => 'postMessage',
     'js_vars'         => [
         [
-            'element'  => '.ud-site-main .wraper',
+            'element'  => '.ultd--site-main .wraper',
             'function' => 'css',
             'property' => 'border-style',
         ],
@@ -420,7 +425,7 @@ Kirki::add_field( 'ud_panel', [
 
 // border-color
 
-Kirki::add_field( 'ud_panel', [
+Kirki::add_field( 'ultd__panel', [
     'type'            => 'color',
     'settings'        => 'section_border_color',
     'label'           => __( 'Border Color', 'ultimate-doc' ),
@@ -432,7 +437,7 @@ Kirki::add_field( 'ud_panel', [
     'transport'       => 'postMessage',
     'js_vars'         => [
         [
-            'element'  => '.ud-site-main .wraper',
+            'element'  => '.ultd--site-main .wraper',
             'function' => 'css',
             'property' => 'border-color',
         ],
@@ -447,7 +452,7 @@ Kirki::add_field( 'ud_panel', [
 ] );
 
 // padding
-Kirki::add_field( 'ud_panel', [
+Kirki::add_field( 'ultd__panel', [
     'type'            => 'dimensions',
     'settings'        => 'archive_area_padding',
     'label'           => esc_html__( 'Section Padding', 'ultimate-doc' ),
@@ -469,7 +474,7 @@ Kirki::add_field( 'ud_panel', [
 
 // radius
 
-Kirki::add_field( 'ud_panel', [
+Kirki::add_field( 'ultd__panel', [
     'type'            => 'slider',
     'settings'        => 'section_border_radius',
     'label'           => esc_html__( 'Content Border Radius', 'ultimate-doc' ),
@@ -483,7 +488,7 @@ Kirki::add_field( 'ud_panel', [
     'transport'       => 'postMessage',
     'js_vars'         => [
         [
-            'element'  => '.ud-site-main .wraper',
+            'element'  => '.ultd--site-main .wraper',
             'function' => 'css',
             'property' => 'border-radius',
             'units'    => 'px',
@@ -500,11 +505,11 @@ Kirki::add_field( 'ud_panel', [
 
 // section-thumbnail
 
-Kirki::add_field( 'ud_panel', [
+Kirki::add_field( 'ultd__panel', [
     'type'            => 'custom',
     'settings'        => 'section_top',
     'section'         => 'docs_archive',
-    'default'         => '<h3 style="padding:12px 0px; text-align: center; font-size: 16px; background:#ddd; color:#222; margin:0;">' . __( 'Thumbnail', 'ud-mini-cart' ) . '</h3>',
+    'default'         => '<h3 style="padding:12px 0px; text-align: center; font-size: 16px; background:#ddd; color:#222; margin:0;">' . __( 'Thumbnail', 'ultimate-doc' ) . '</h3>',
     'priority'        => 10,
     'active_callback' => [
         [
@@ -515,7 +520,7 @@ Kirki::add_field( 'ud_panel', [
     ],
 ] );
 
-Kirki::add_field( 'ud_panel', [
+Kirki::add_field( 'ultd__panel', [
     'type'            => 'slider',
     'settings'        => 'section_thumbnail_width',
     'label'           => esc_html__( 'Width', 'ultimate-doc' ),
@@ -529,7 +534,7 @@ Kirki::add_field( 'ud_panel', [
     'transport'       => 'postMessage',
     'js_vars'         => [
         [
-            'element'  => '.ud-site-main .top-iocn',
+            'element'  => '.ultd--site-main .top-iocn',
             'function' => 'css',
             'property' => 'width',
             'units'    => '%',
@@ -544,7 +549,7 @@ Kirki::add_field( 'ud_panel', [
     ],
 ] );
 
-Kirki::add_field( 'ud_panel', [
+Kirki::add_field( 'ultd__panel', [
     'type'            => 'slider',
     'settings'        => 'section_thumbnail_height',
     'label'           => esc_html__( 'Height', 'ultimate-doc' ),
@@ -558,7 +563,7 @@ Kirki::add_field( 'ud_panel', [
     'transport'       => 'postMessage',
     'js_vars'         => [
         [
-            'element'  => '.ud-site-main .top-iocn',
+            'element'  => '.ultd--site-main .top-iocn',
             'function' => 'css',
             'property' => 'height',
             'units'    => 'px',
@@ -573,7 +578,7 @@ Kirki::add_field( 'ud_panel', [
     ],
 ] );
 
-Kirki::add_field( 'ud_panel', [
+Kirki::add_field( 'ultd__panel', [
     'type'            => 'color',
     'settings'        => 'thum_area_backgound',
     'label'           => __( 'Background Color', 'ultimate-doc' ),
@@ -585,7 +590,7 @@ Kirki::add_field( 'ud_panel', [
     'transport'       => 'postMessage',
     'js_vars'         => [
         [
-            'element'  => '.ud-site-main .top-iocn',
+            'element'  => '.ultd--site-main .top-iocn',
             'function' => 'css',
             'property' => 'background-color',
         ],
@@ -599,7 +604,7 @@ Kirki::add_field( 'ud_panel', [
     ],
 ] );
 
-Kirki::add_field( 'ud_panel', [
+Kirki::add_field( 'ultd__panel', [
     'type'            => 'slider',
     'settings'        => 'icon_bg_width',
     'label'           => esc_html__( 'Icon background Width', 'ultimate-doc' ),
@@ -613,7 +618,7 @@ Kirki::add_field( 'ud_panel', [
     'transport'       => 'postMessage',
     'js_vars'         => [
         [
-            'element'  => '.ud-site-main .icon.icon-one',
+            'element'  => '.ultd--site-main .icon.icon-one',
             'function' => 'css',
             'property' => 'width',
             'units'    => 'px',
@@ -628,7 +633,7 @@ Kirki::add_field( 'ud_panel', [
     ],
 ] );
 
-Kirki::add_field( 'ud_panel', [
+Kirki::add_field( 'ultd__panel', [
     'type'            => 'slider',
     'settings'        => 'icon_bg_height',
     'label'           => esc_html__( 'Icon Background Height', 'ultimate-doc' ),
@@ -642,7 +647,7 @@ Kirki::add_field( 'ud_panel', [
     'transport'       => 'postMessage',
     'js_vars'         => [
         [
-            'element'  => '.ud-site-main .icon.icon-one',
+            'element'  => '.ultd--site-main .icon.icon-one',
             'function' => 'css',
             'property' => 'height',
             'units'    => 'px',
@@ -657,7 +662,7 @@ Kirki::add_field( 'ud_panel', [
     ],
 ] );
 
-Kirki::add_field( 'ud_panel', [
+Kirki::add_field( 'ultd__panel', [
     'type'            => 'color',
     'settings'        => 'icon_area_backgound',
     'label'           => __( 'Background Color', 'ultimate-doc' ),
@@ -669,7 +674,7 @@ Kirki::add_field( 'ud_panel', [
     'transport'       => 'postMessage',
     'js_vars'         => [
         [
-            'element'  => '.ud-site-main .icon.icon-one',
+            'element'  => '.ultd--site-main .icon.icon-one',
             'function' => 'css',
             'property' => 'background-color',
         ],
@@ -683,7 +688,7 @@ Kirki::add_field( 'ud_panel', [
     ],
 ] );
 
-Kirki::add_field( 'ud_panel', array(
+Kirki::add_field( 'ultd__panel', array(
     'type'            => 'dimensions',
     'settings'        => 'icon_border_setting',
     'label'           => esc_attr__( 'Border Width', 'textdomain' ),
@@ -710,7 +715,7 @@ Kirki::add_field( 'ud_panel', array(
 ) );
 
 // border type
-Kirki::add_field( 'ud_panel', [
+Kirki::add_field( 'ultd__panel', [
     'type'            => 'select',
     'settings'        => 'icob_border_type',
     'label'           => esc_html__( 'Content area Border Type', 'kirki' ),
@@ -735,7 +740,7 @@ Kirki::add_field( 'ud_panel', [
     'transport'       => 'postMessage',
     'js_vars'         => [
         [
-            'element'  => '.ud-site-main .icon.icon-one',
+            'element'  => '.ultd--site-main .icon.icon-one',
             'function' => 'css',
             'property' => 'border-style',
         ],
@@ -750,7 +755,7 @@ Kirki::add_field( 'ud_panel', [
 ] );
 
 // border-color
-Kirki::add_field( 'ud_panel', [
+Kirki::add_field( 'ultd__panel', [
     'type'            => 'color',
     'settings'        => 'icon_border_color',
     'label'           => __( 'Border Color', 'ultimate-doc' ),
@@ -762,7 +767,7 @@ Kirki::add_field( 'ud_panel', [
     'transport'       => 'postMessage',
     'js_vars'         => [
         [
-            'element'  => '.ud-site-main .icon.icon-one',
+            'element'  => '.ultd--site-main .icon.icon-one',
             'function' => 'css',
             'property' => 'border-color',
         ],
@@ -776,7 +781,7 @@ Kirki::add_field( 'ud_panel', [
     ],
 ] );
 
-Kirki::add_field( 'ud_panel', [
+Kirki::add_field( 'ultd__panel', [
     'type'            => 'slider',
     'settings'        => 'icon_border_radius',
     'label'           => esc_html__( 'Border Radius', 'ultimate-doc' ),
@@ -790,7 +795,7 @@ Kirki::add_field( 'ud_panel', [
     'transport'       => 'postMessage',
     'js_vars'         => [
         [
-            'element'  => '.ud-site-main .icon.icon-one',
+            'element'  => '.ultd--site-main .icon.icon-one',
             'function' => 'css',
             'property' => 'border-radius',
             'units'    => 'px',
@@ -805,11 +810,11 @@ Kirki::add_field( 'ud_panel', [
     ],
 ] );
 
-Kirki::add_field( 'ud_panel', [
+Kirki::add_field( 'ultd__panel', [
     'type'            => 'custom',
     'settings'        => 'doc_content_top',
     'section'         => 'docs_archive',
-    'default'         => '<h3 style="padding:12px 0px; text-align: center; font-size: 16px; background:#ddd; color:#222; margin:0;">' . __( 'Doc Content', 'ud-mini-cart' ) . '</h3>',
+    'default'         => '<h3 style="padding:12px 0px; text-align: center; font-size: 16px; background:#ddd; color:#222; margin:0;">' . __( 'Doc Content', 'ultimate-doc' ) . '</h3>',
     'priority'        => 10,
     'active_callback' => [
         [
@@ -820,7 +825,7 @@ Kirki::add_field( 'ud_panel', [
     ],
 ] );
 
-Kirki::add_field( 'ud_panel', [
+Kirki::add_field( 'ultd__panel', [
     'type'            => 'color',
     'settings'        => 'section_content_bg',
     'label'           => __( 'Background Color', 'ultimate-doc' ),
@@ -832,7 +837,7 @@ Kirki::add_field( 'ud_panel', [
     'transport'       => 'postMessage',
     'js_vars'         => [
         [
-            'element'  => '.ud-site-main .ud-content-area',
+            'element'  => '.ultd--site-main .ultd--content-area',
             'function' => 'css',
             'property' => 'background-color',
         ],
@@ -846,7 +851,7 @@ Kirki::add_field( 'ud_panel', [
     ],
 ] );
 
-Kirki::add_field( 'ud_panel', [
+Kirki::add_field( 'ultd__panel', [
     'type'            => 'dimensions',
     'settings'        => 'doc_sec_content_padding',
     'label'           => esc_html__( 'Content Padding', 'ultimate-doc' ),
@@ -866,7 +871,7 @@ Kirki::add_field( 'ud_panel', [
     ],
 ] );
 
-Kirki::add_field( 'ud_panel', [
+Kirki::add_field( 'ultd__panel', [
     'type'            => 'slider',
     'settings'        => 'archive_title_font_size',
     'label'           => esc_html__( 'Title Font Size', 'ultimate-doc' ),
@@ -880,7 +885,7 @@ Kirki::add_field( 'ud_panel', [
     'transport'       => 'postMessage',
     'js_vars'         => [
         [
-            'element'  => '.ud-site-main .docs-title h1',
+            'element'  => '.ultd--site-main .docs-title h1',
             'function' => 'css',
             'property' => 'font-size',
             'units'    => 'px',
@@ -895,7 +900,7 @@ Kirki::add_field( 'ud_panel', [
     ],
 ] );
 
-Kirki::add_field( 'ud_panel', [
+Kirki::add_field( 'ultd__panel', [
     'type'            => 'color',
     'settings'        => 'section_title_color',
     'label'           => __( 'Title Color', 'ultimate-doc' ),
@@ -907,7 +912,7 @@ Kirki::add_field( 'ud_panel', [
     'transport'       => 'postMessage',
     'js_vars'         => [
         [
-            'element'  => '.ud-site-main .docs-title h1',
+            'element'  => '.ultd--site-main .docs-title h1',
             'function' => 'css',
             'property' => 'color',
         ],
@@ -921,7 +926,7 @@ Kirki::add_field( 'ud_panel', [
     ],
 ] );
 
-Kirki::add_field( 'ud_panel', [
+Kirki::add_field( 'ultd__panel', [
     'type'            => 'slider',
     'settings'        => 'section_title_gap',
     'label'           => esc_html__( 'Title Gap', 'ultimate-doc' ),
@@ -935,7 +940,7 @@ Kirki::add_field( 'ud_panel', [
     'transport'       => 'postMessage',
     'js_vars'         => [
         [
-            'element'  => '.ud-site-main .docs-title h1',
+            'element'  => '.ultd--site-main .docs-title h1',
             'function' => 'css',
             'property' => 'margin-bottom',
             'units'    => 'px',
@@ -950,7 +955,7 @@ Kirki::add_field( 'ud_panel', [
     ],
 ] );
 
-Kirki::add_field( 'ud_panel', [
+Kirki::add_field( 'ultd__panel', [
     'type'            => 'slider',
     'settings'        => 'archive_desc_font_size',
     'label'           => esc_html__( 'Description Font size', 'ultimate-doc' ),
@@ -964,7 +969,7 @@ Kirki::add_field( 'ud_panel', [
     'transport'       => 'postMessage',
     'js_vars'         => [
         [
-            'element'  => '.ud-site-main .docs-excerpt p',
+            'element'  => '.ultd--site-main .docs-excerpt p',
             'function' => 'css',
             'property' => 'font-size',
             'units'    => 'px',
@@ -979,7 +984,7 @@ Kirki::add_field( 'ud_panel', [
     ],
 ] );
 
-Kirki::add_field( 'ud_panel', [
+Kirki::add_field( 'ultd__panel', [
     'type'            => 'color',
     'settings'        => 'archive_desc_color',
     'label'           => __( 'Description Color', 'ultimate-doc' ),
@@ -991,7 +996,7 @@ Kirki::add_field( 'ud_panel', [
     'transport'       => 'postMessage',
     'js_vars'         => [
         [
-            'element'  => '.ud-site-main .docs-excerpt p',
+            'element'  => '.ultd--site-main .docs-excerpt p',
             'function' => 'css',
             'property' => 'color',
 
@@ -1006,7 +1011,7 @@ Kirki::add_field( 'ud_panel', [
     ],
 ] );
 
-Kirki::add_field( 'ud_panel', [
+Kirki::add_field( 'ultd__panel', [
     'type'            => 'slider',
     'settings'        => 'description_gap',
     'label'           => esc_html__( 'Description Gap', 'ultimate-doc' ),
@@ -1020,7 +1025,7 @@ Kirki::add_field( 'ud_panel', [
     'transport'       => 'postMessage',
     'js_vars'         => [
         [
-            'element'  => '.ud-site-main .docs-excerpt p',
+            'element'  => '.ultd--site-main .docs-excerpt p',
             'function' => 'css',
             'property' => 'margin-bottom',
             'units'    => 'px',
@@ -1035,11 +1040,11 @@ Kirki::add_field( 'ud_panel', [
     ],
 ] );
 
-Kirki::add_field( 'ud_panel', [
+Kirki::add_field( 'ultd__panel', [
     'type'            => 'custom',
     'settings'        => 'section_total_count',
     'section'         => 'docs_archive',
-    'default'         => '<h3 style="padding:12px 0px; text-align: center; font-size: 16px; background:#ddd; color:#222; margin:0;">' . __( 'Section total Article', 'ud-mini-cart' ) . '</h3>',
+    'default'         => '<h3 style="padding:12px 0px; text-align: center; font-size: 16px; background:#ddd; color:#222; margin:0;">' . __( 'Section total Article', 'ultimate-doc' ) . '</h3>',
     'priority'        => 10,
     'active_callback' => [
         [
@@ -1050,7 +1055,7 @@ Kirki::add_field( 'ud_panel', [
     ],
 ] );
 
-Kirki::add_field( 'ud_panel', [
+Kirki::add_field( 'ultd__panel', [
     'type'            => 'slider',
     'settings'        => 'total_article_font_size',
     'label'           => esc_html__( 'Font size', 'ultimate-doc' ),
@@ -1064,7 +1069,7 @@ Kirki::add_field( 'ud_panel', [
     'transport'       => 'postMessage',
     'js_vars'         => [
         [
-            'element'  => '.ud-site-main .total-article .article-total',
+            'element'  => '.ultd--site-main .total-article .article-total',
             'function' => 'css',
             'property' => 'font-size',
             'units'    => 'px',
@@ -1079,7 +1084,7 @@ Kirki::add_field( 'ud_panel', [
     ],
 ] );
 
-Kirki::add_field( 'ud_panel', [
+Kirki::add_field( 'ultd__panel', [
     'type'            => 'color',
     'settings'        => 'article_totle_color',
     'label'           => __( 'Total article Color', 'ultimate-doc' ),
@@ -1091,7 +1096,7 @@ Kirki::add_field( 'ud_panel', [
     'transport'       => 'postMessage',
     'js_vars'         => [
         [
-            'element'  => '.ud-site-main .total-article .article-total',
+            'element'  => '.ultd--site-main .total-article .article-total',
             'function' => 'css',
             'property' => 'color',
 

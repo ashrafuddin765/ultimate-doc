@@ -45,7 +45,7 @@ class Insights {
      */
     public function __construct( $client, $name = null, $file = null ) {
 
-        if ( is_string( $client ) && ! empty( $name ) && ! empty( $file ) ) {
+        if ( is_string( $client ) && !empty( $name ) && !empty( $file ) ) {
             $client = new Client( $client, $name, $file );
         }
 
@@ -123,7 +123,7 @@ class Insights {
      */
     public function init_plugin() {
         // plugin deactivate popup
-        if ( ! $this->is_local_server() ) {
+        if ( !$this->is_local_server() ) {
             add_filter( 'plugin_action_links_' . $this->client->basename, array( $this, 'plugin_action_links' ) );
             add_action( 'admin_footer', array( $this, 'deactivate_scripts' ) );
         }
@@ -170,7 +170,7 @@ class Insights {
             return;
         }
 
-        if ( /* ! $this->tracking_allowed() && */ ! $override ) {
+        if (  /* ! $this->tracking_allowed() && */!$override ) {
             return;
         }
 
@@ -202,7 +202,7 @@ class Insights {
             'paged'   => 1,
         ) );
 
-        $admin_user =  ( is_array( $users ) && ! empty( $users ) ) ? $users[0] : false;
+        $admin_user = ( is_array( $users ) && !empty( $users ) ) ? $users[0] : false;
         $first_name = $last_name = '';
 
         if ( $admin_user ) {
@@ -327,7 +327,7 @@ class Insights {
     private function schedule_event() {
         $hook_name = $this->client->slug . '_tracker_send_event';
 
-        if ( ! wp_next_scheduled( $hook_name ) ) {
+        if ( !wp_next_scheduled( $hook_name ) ) {
             wp_schedule_event( time(), 'weekly', $hook_name );
         }
     }
@@ -356,12 +356,12 @@ class Insights {
             return;
         }
 
-        if ( ! current_user_can( 'manage_options' ) ) {
+        if ( !current_user_can( 'manage_options' ) ) {
             return;
         }
 
         // don't show tracking if a local server
-        if ( ! $this->is_local_server() ) {
+        if ( !$this->is_local_server() ) {
             $optin_url  = add_query_arg( $this->client->slug . '_tracker_optin', 'true' );
             $optout_url = add_query_arg( $this->client->slug . '_tracker_optout', 'true' );
 
@@ -378,10 +378,10 @@ class Insights {
             $notice .= 'We are using Finestics to collect your data. <a href="' . $policy_url . '">Learn more</a> about how Finestics collects and handle your data.</p>';
 
             echo '<div class="updated"><p>';
-                echo $notice;
-                echo '</p><p class="submit">';
-                echo '&nbsp;<a href="' . esc_url( $optin_url ) . '" class="button-primary button-large">' . $this->client->__trans( 'Allow' ) . '</a>';
-                echo '&nbsp;<a href="' . esc_url( $optout_url ) . '" class="button-secondary button-large">' . $this->client->__trans( 'No thanks' ) . '</a>';
+            echo $notice;
+            echo '</p><p class="submit">';
+            echo '&nbsp;<a href="' . esc_url( $optin_url ) . '" class="button-primary button-large">' . $this->client->__trans( 'Allow' ) . '</a>';
+            echo '&nbsp;<a href="' . esc_url( $optout_url ) . '" class="button-secondary button-large">' . $this->client->__trans( 'No thanks' ) . '</a>';
             echo '</p></div>';
 
             echo "<script type='text/javascript'>jQuery('." . $this->client->slug . "-insights-data-we-collect').on('click', function(e) {
@@ -400,14 +400,14 @@ class Insights {
      */
     public function handle_optin_optout() {
 
-        if ( isset( $_GET[ $this->client->slug . '_tracker_optin' ] ) && $_GET[ $this->client->slug . '_tracker_optin' ] == 'true' ) {
+        if ( isset( $_GET[$this->client->slug . '_tracker_optin'] ) && $_GET[$this->client->slug . '_tracker_optin'] == 'true' ) {
             $this->optin();
 
             wp_redirect( remove_query_arg( $this->client->slug . '_tracker_optin' ) );
             exit;
         }
 
-        if ( isset( $_GET[ $this->client->slug . '_tracker_optout' ] ) && $_GET[ $this->client->slug . '_tracker_optout' ] == 'true' ) {
+        if ( isset( $_GET[$this->client->slug . '_tracker_optout'] ) && $_GET[$this->client->slug . '_tracker_optout'] == 'true' ) {
             $this->optin();
 
             wp_redirect( remove_query_arg( $this->client->slug . '_tracker_optout' ) );
@@ -453,7 +453,7 @@ class Insights {
     public function get_post_count( $post_type ) {
         global $wpdb;
 
-        return (int) $wpdb->get_var( "SELECT count(ID) FROM $wpdb->posts WHERE post_type = '$post_type' and post_status = 'publish'");
+        return (int) $wpdb->get_var( "SELECT count(ID) FROM $wpdb->posts WHERE post_type = '$post_type' and post_status = 'publish'" );
     }
 
     /**
@@ -466,15 +466,15 @@ class Insights {
 
         $server_data = array();
 
-        if ( isset( $_SERVER['SERVER_SOFTWARE'] ) && ! empty( $_SERVER['SERVER_SOFTWARE'] ) ) {
-            $server_data['software'] = $_SERVER['SERVER_SOFTWARE'];
+        if ( isset( $_SERVER['SERVER_SOFTWARE'] ) && !empty( $_SERVER['SERVER_SOFTWARE'] ) ) {
+            $server_data['software'] = sanitize_text_field( $_SERVER['SERVER_SOFTWARE'] );
         }
 
         if ( function_exists( 'phpversion' ) ) {
             $server_data['php_version'] = phpversion();
         }
 
-        $server_data['mysql_version']        = $wpdb->db_version();
+        $server_data['mysql_version'] = $wpdb->db_version();
 
         $server_data['php_max_upload_size']  = size_format( wp_max_upload_size() );
         $server_data['php_default_timezone'] = date_default_timezone_get();
@@ -493,11 +493,11 @@ class Insights {
     private function get_wp_info() {
         $wp_data = array();
 
-        $wp_data['memory_limit'] = WP_MEMORY_LIMIT;
-        $wp_data['debug_mode']   = ( defined('WP_DEBUG') && WP_DEBUG ) ? 'Yes' : 'No';
-        $wp_data['locale']       = get_locale();
-        $wp_data['version']      = get_bloginfo( 'version' );
-        $wp_data['multisite']    = is_multisite() ? 'Yes' : 'No';
+        $wp_data['memory_limit']     = WP_MEMORY_LIMIT;
+        $wp_data['debug_mode']       = ( defined( 'WP_DEBUG' ) && WP_DEBUG ) ? 'Yes' : 'No';
+        $wp_data['locale']           = get_locale();
+        $wp_data['version']          = get_bloginfo( 'version' );
+        $wp_data['multisite']        = is_multisite() ? 'Yes' : 'No';
         $wp_data['tracking_allowed'] = get_option( $this->client->slug . '_allow_tracking' ) ? get_option( $this->client->slug . '_allow_tracking' ) : 'No';
         return $wp_data;
     }
@@ -509,7 +509,7 @@ class Insights {
      */
     private function get_all_plugins() {
         // Ensure get_plugins function is loaded
-        if ( ! function_exists( 'get_plugins' ) ) {
+        if ( !function_exists( 'get_plugins' ) ) {
             include ABSPATH . '/wp-admin/includes/plugin.php';
         }
 
@@ -519,7 +519,7 @@ class Insights {
 
         foreach ( $plugins as $k => $v ) {
             // Take care of formatting the data how we want it.
-            $formatted = array();
+            $formatted         = array();
             $formatted['name'] = strip_tags( $v['Name'] );
 
             if ( isset( $v['Version'] ) ) {
@@ -562,7 +562,7 @@ class Insights {
 
         // Get user count based on user role
         foreach ( $user_count_data['avail_roles'] as $role => $count ) {
-            $user_count[ $role ] = $count;
+            $user_count[$role] = $count;
         }
 
         return $user_count;
@@ -600,7 +600,7 @@ class Insights {
 
         // re-schedule and delete the last sent time so we could force send again
         $hook_name = $this->client->slug . '_tracker_send_event';
-        if ( ! wp_next_scheduled( $hook_name ) ) {
+        if ( !wp_next_scheduled( $hook_name ) ) {
             wp_schedule_event( time(), 'weekly', $hook_name );
         }
 
@@ -652,43 +652,43 @@ class Insights {
                 'id'          => 'could-not-understand',
                 'text'        => "I couldn't understand how to make it work",
                 'type'        => 'textarea',
-                'placeholder' => 'Would you like us to assist you?'
+                'placeholder' => 'Would you like us to assist you?',
             ),
             array(
                 'id'          => 'found-better-plugin',
                 'text'        => 'I found a better plugin',
                 'type'        => 'text',
-                'placeholder' => 'Which plugin?'
+                'placeholder' => 'Which plugin?',
             ),
             array(
                 'id'          => 'not-have-that-feature',
                 'text'        => 'The plugin is great, but I need specific feature that you don\'t support',
                 'type'        => 'textarea',
-                'placeholder' => 'Could you tell us more about that feature?'
+                'placeholder' => 'Could you tell us more about that feature?',
             ),
             array(
                 'id'          => 'is-not-working',
                 'text'        => 'The plugin is not working',
                 'type'        => 'textarea',
-                'placeholder' => 'Could you tell us a bit more whats not working?'
+                'placeholder' => 'Could you tell us a bit more whats not working?',
             ),
             array(
                 'id'          => 'looking-for-other',
                 'text'        => "It's not what I was looking for",
                 'type'        => '',
-                'placeholder' => ''
+                'placeholder' => '',
             ),
             array(
                 'id'          => 'did-not-work-as-expected',
                 'text'        => "The plugin didn't work as expected",
                 'type'        => 'textarea',
-                'placeholder' => 'What did you expect?'
+                'placeholder' => 'What did you expect?',
             ),
             array(
                 'id'          => 'other',
                 'text'        => 'Other',
                 'type'        => 'textarea',
-                'placeholder' => 'Could you tell us a bit more?'
+                'placeholder' => 'Could you tell us a bit more?',
             ),
         );
 
@@ -702,7 +702,7 @@ class Insights {
      */
     public function uninstall_reason_submission() {
 
-        if ( ! isset( $_POST['reason_id'] ) ) {
+        if ( !isset( $_POST['reason_id'] ) ) {
             wp_send_json_error();
         }
 
@@ -711,7 +711,7 @@ class Insights {
         $data = array(
             'hash'        => $this->client->hash,
             'reason_id'   => sanitize_text_field( $_POST['reason_id'] ),
-            'reason_info' => isset( $_REQUEST['reason_info'] ) ? trim( stripslashes( $_REQUEST['reason_info'] ) ) : '',
+            'reason_info' => isset( $_REQUEST['reason_info'] ) ? trim( stripslashes( sanitize_text_field( $_REQUEST['reason_info'] ) ) ) : '',
             'site'        => $this->get_site_name(),
             'url'         => esc_url( home_url() ),
             'admin_email' => get_option( 'admin_email' ),
@@ -750,19 +750,19 @@ class Insights {
         $reasons = $this->get_uninstall_reasons();
         ?>
 
-        <div class="wd-dr-modal" id="<?php echo $this->client->slug; ?>-wd-dr-modal">
+        <div class="wd-dr-modal" id="<?php echo esc_attr( $this->client->slug ); ?>-wd-dr-modal">
             <div class="wd-dr-modal-wrap">
                 <div class="wd-dr-modal-header">
-                    <h3><?php $this->client->_etrans( 'If you have a moment, please let us know why you are deactivating:' ); ?></h3>
+                    <h3><?php $this->client->_etrans( 'If you have a moment, please let us know why you are deactivating:' );?></h3>
                 </div>
 
                 <div class="wd-dr-modal-body">
                     <ul class="reasons">
-                        <?php foreach ($reasons as $reason) { ?>
+                        <?php foreach ( $reasons as $reason ) {?>
                             <li data-type="<?php echo esc_attr( $reason['type'] ); ?>" data-placeholder="<?php echo esc_attr( $reason['placeholder'] ); ?>">
-                                <label><input type="radio" name="selected-reason" value="<?php echo $reason['id']; ?>"> <?php echo $reason['text']; ?></label>
+                                <label><input type="radio" name="selected-reason" value="<?php echo esc_attr( $reason['id'] ); ?>"> <?php echo esc_attr( $reason['text'] ); ?></label>
                             </li>
-                        <?php } ?>
+                        <?php }?>
                     </ul>
                     <p class="wd-dr-modal-reasons-bottom">
                     We never share your data to any third party. This data will help us to troubleshoot the problems and make product improvements. Learn more about how WPGrids handles your data
@@ -771,9 +771,9 @@ class Insights {
                 </div>
 
                 <div class="wd-dr-modal-footer">
-                    <a href="#" class="dont-bother-me"><?php $this->client->_etrans( "I rather wouldn't say" ); ?></a>
-                    <button class="button-secondary"><?php $this->client->_etrans( 'Submit & Deactivate' ); ?></button>
-                    <button class="button-primary"><?php $this->client->_etrans( 'Cancel' ); ?></button>
+                    <a href="#" class="dont-bother-me"><?php $this->client->_etrans( "I rather wouldn't say" );?></a>
+                    <button class="button-secondary"><?php $this->client->_etrans( 'Submit & Deactivate' );?></button>
+                    <button class="button-primary"><?php $this->client->_etrans( 'Cancel' );?></button>
                 </div>
             </div>
         </div>
@@ -832,10 +832,10 @@ class Insights {
         <script type="text/javascript">
             (function($) {
                 $(function() {
-                    var modal = $( '#<?php echo $this->client->slug; ?>-wd-dr-modal' );
+                    var modal = $( '#<?php echo esc_html( $this->client->slug ); ?>-wd-dr-modal' );
                     var deactivateLink = '';
 
-                    $( '#the-list' ).on('click', 'a.<?php echo $this->client->slug; ?>-deactivate-link', function(e) {
+                    $( '#the-list' ).on('click', 'a.<?php echo esc_html( $this->client->slug ); ?>-deactivate-link', function(e) {
                         e.preventDefault();
 
                         modal.addClass('modal-active');
@@ -882,7 +882,7 @@ class Insights {
                             url: ajaxurl,
                             type: 'POST',
                             data: {
-                                action: '<?php echo $this->client->slug; ?>_submit-uninstall-reason',
+                                action: '<?php echo esc_html( $this->client->slug ); ?>_submit-uninstall-reason',
                                 reason_id: ( 0 === $radio.length ) ? 'none' : $radio.val(),
                                 reason_info: ( 0 !== $input.length ) ? $input.val().trim() : ''
                             },
@@ -900,7 +900,7 @@ class Insights {
         </script>
 
         <?php
-    }
+}
 
     /**
      * Run after theme deactivated
@@ -947,7 +947,7 @@ class Insights {
 
         $ip = trim( wp_remote_retrieve_body( $response ) );
 
-        if ( ! filter_var( $ip, FILTER_VALIDATE_IP ) ) {
+        if ( !filter_var( $ip, FILTER_VALIDATE_IP ) ) {
             return '';
         }
 

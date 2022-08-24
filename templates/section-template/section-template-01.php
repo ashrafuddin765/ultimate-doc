@@ -16,7 +16,7 @@
                 ?>
             </div>
         </div>
-        <div class="ud-content-area">
+        <div class="ultd--content-area">
             <div class="docs-title">
                 <?php if($first_child): ?>
                 <a href="<?php echo get_the_permalink( $first_child ) ?>">
@@ -33,11 +33,11 @@
             <?php endif; ?>
             <div class="total-article">
                 <span class="article-total"><?php 
-                    $enable_article_count = ud_get_option('article_enable_post_count', true);
-                    $article_count_text = ud_get_option('article_count_text', 'Articles');
-                    $article_count_text_singular = ud_get_option('article_count_text_singular', 'Article');
+                    $enable_article_count = ultd__get_option('article_enable_post_count', true);
+                    $article_count_text = ultd__get_option('article_count_text', 'Articles');
+                    $article_count_text_singular = ultd__get_option('article_count_text_singular', 'Article');
                   if($first_child && $enable_article_count){
-                      $total_article = ud_get_total_article(get_the_ID(), true);
+                      $total_article = ultd__get_total_article(get_the_ID(), true);
                     printf(
                      '%s %s', 
                      $total_article,

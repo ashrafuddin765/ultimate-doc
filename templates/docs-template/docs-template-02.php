@@ -20,7 +20,7 @@
                     <?php 
                     printf(
                     '%s %s', 
-                    ud_get_total_article(get_the_ID())   ,
+                    ultd__get_total_article(get_the_ID())   ,
                     esc_html__( 'Articles in this doc', 'ultimate-doc' )); 
                     
                 ?> </span>

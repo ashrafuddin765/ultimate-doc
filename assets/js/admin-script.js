@@ -12,15 +12,15 @@ function udTabs(evt, className) {
   // Declare all variables
   var i, tabcontent, tablinks;
 
-  document.getElementById('ud-settings').setAttribute('data-tab', className);
+  document.getElementById('ultd--settings').setAttribute('data-tab', className);
   // Get all elements with class="tabcontent" and hide them
-  tabcontent = document.getElementsByClassName("ud-tab-content");
+  tabcontent = document.getElementsByClassName("ultd--tab-content");
   for (i = 0; i < tabcontent.length; i++) {
     tabcontent[i].style.display = "none";
   }
 
   // Get all elements with class="tablinks" and remove the class "active"
-  tablinks = document.getElementsByClassName("ud-tab-link");
+  tablinks = document.getElementsByClassName("ultd--tab-link");
   for (i = 0; i < tablinks.length; i++) {
     tablinks[i].className = tablinks[i].className.replace(" active", "");
   }
@@ -65,7 +65,7 @@ Vue.directive('sortable', {
           });
 
         wp.ajax.post({
-          action: 'ud_sortable_docs',
+          action: 'ultd__sortable_docs',
           ids: ids,
           _wpnonce: UltimateDoc.nonce,
         });
@@ -79,7 +79,7 @@ Vue.directive('sortable', {
 
 
 new Vue({
-  el: '#ud-app',
+  el: '#ultd--app',
   data: {
     editurl: '',
     viewurl: '',
@@ -97,12 +97,12 @@ new Vue({
 
     jQuery.get(
       ajaxurl, {
-        action: 'ud_admin_get_docs',
+        action: 'ultd__admin_get_docs',
         _wpnonce: UltimateDoc.nonce,
       },
       function (data) {
         dom.find('.spinner').remove();
-        dom.find('.ud-no-docs').removeClass('not-loaded');
+        dom.find('.ultd--no-docs').removeClass('not-loaded');
 
         self.docs = data.data;
 
@@ -136,7 +136,7 @@ new Vue({
         confirmButtonText: UltimateDoc.confirmBtn,
         cancelButtonText: UltimateDoc.cancelBtn,
         inputValidator: this.swalInputValidator,
-        customClass: 'ud_form_modal'
+        customClass: 'ultd__form_modal'
       }).then(function (input) {
         if (input.isDismissed) {
           return;
@@ -144,7 +144,7 @@ new Vue({
 
         wp.ajax.send({
           data: {
-            action: 'ud_create_doc',
+            action: 'ultd__create_doc',
             title: input.value.trim(),
             parent: 0,
             _wpnonce: UltimateDoc.nonce,
@@ -162,7 +162,7 @@ new Vue({
 
       wp.ajax.send({
         data: {
-          action: 'ud_duplicate_doc',
+          action: 'ultd__duplicate_doc',
           post_id: post.post.id,
           parent: 0,
           _wpnonce: UltimateDoc.nonce,
@@ -187,7 +187,7 @@ new Vue({
         confirmButtonColor: '#F54343',
         confirmButtonText: UltimateDoc.delConfirmBtn,
         cancelButtonText: UltimateDoc.cancelBtn,
-        customClass: 'ud_alert ud_alert_delete'
+        customClass: 'ultd__alert ultd__alert_delete'
       }).then(function (action) {
         if (action.isConfirmed) {
           self.removePost(doc, docs, 'The doc has been deleted.');
@@ -204,7 +204,7 @@ new Vue({
         inputPlaceholder: UltimateDoc.write_something,
         confirmButtonText: UltimateDoc.confirmBtn,
         cancelButtonText: UltimateDoc.cancelBtn,
-        customClass: 'ud_form_modal',
+        customClass: 'ultd__form_modal',
         inputValidator: this.swalInputValidator,
       }).then(function (input) {
         if (input.isDismissed) {
@@ -214,7 +214,7 @@ new Vue({
         if (input.value) {
           wp.ajax.send({
             data: {
-              action: 'ud_create_doc',
+              action: 'ultd__create_doc',
               title: input.value.trim(),
               parent: doc.post.id,
               order: doc.child.length,
@@ -240,7 +240,7 @@ new Vue({
         confirmButtonColor: '#F54343',
         confirmButtonText: UltimateDoc.delConfirmBtn,
         cancelButtonText: UltimateDoc.cancelBtn,
-        customClass: 'ud_alert ud_alert_delete'
+        customClass: 'ultd__alert ultd__alert_delete'
       }).then(function (action) {
         if (action.isDismissed) {
           return;
@@ -262,7 +262,7 @@ new Vue({
         inputPlaceholder: UltimateDoc.write_something,
         confirmButtonText: UltimateDoc.confirmBtn,
         cancelButtonText: UltimateDoc.cancelBtn,
-        customClass: 'ud_form_modal',
+        customClass: 'ultd__form_modal',
         inputValidator: this.swalInputValidator,
       }).then(function (input) {
         if (input.isDismissed) {
@@ -275,7 +275,7 @@ new Vue({
 
         wp.ajax.send({
           data: {
-            action: 'ud_create_doc',
+            action: 'ultd__create_doc',
             title: input.value,
             parent: section.post.id,
             status: 'draft',
@@ -305,12 +305,12 @@ new Vue({
 
       Swal.fire({
         title: UltimateDoc.quickedit,
-        html: '<label class="swal2-input-label" for="ud-input-title">' + UltimateDoc.title + '</label><input name="ud-input-title" id="ud-input-title" class="swal2-input" value="' + doc.post.title + '">' +
-          '<label class="swal2-input-label" for="ud-input-slug">' + UltimateDoc.slug + '</label><input name="ud-input-slug" id="ud-input-slug" class="swal2-input" value="' + doc.post.slug + '"> ',
+        html: '<label class="swal2-input-label" for="ultd--input-title">' + UltimateDoc.title + '</label><input name="ultd--input-title" id="ultd--input-title" class="swal2-input" value="' + doc.post.title + '">' +
+          '<label class="swal2-input-label" for="ultd--input-slug">' + UltimateDoc.slug + '</label><input name="ultd--input-slug" id="ultd--input-slug" class="swal2-input" value="' + doc.post.slug + '"> ',
         showCancelButton: true,
         confirmButtonText: UltimateDoc.confirmBtn,
         cancelButtonText: UltimateDoc.cancelBtn,
-        customClass: 'ud_form_modal',
+        customClass: 'ultd__form_modal',
         inputValidator: this.swalInputValidator,
       }).then(function (input) {
         if (input.isDismissed) {
@@ -320,12 +320,12 @@ new Vue({
         if (input.value === false || input.value === '') {
           return false;
         }
-        var updatedTitle = document.getElementById('ud-input-title').value,
-          updatedSlug = document.getElementById('ud-input-slug').value
+        var updatedTitle = document.getElementById('ultd--input-title').value,
+          updatedSlug = document.getElementById('ultd--input-slug').value
 
         wp.ajax.send({
           data: {
-            action: 'ud_quick_edit',
+            action: 'ultd__quick_edit',
             title: updatedTitle,
             slug: updatedSlug,
             post_id: doc.post.id,
@@ -334,8 +334,8 @@ new Vue({
             _wpnonce: UltimateDoc.nonce,
           },
           success: function (res) {
-            var articles = jQuery(parentEvent.target).parents('.ud-row-actions')
-              .siblings('a').find('.ud-title')
+            var articles = jQuery(parentEvent.target).parents('.ultd--row-actions')
+              .siblings('a').find('.ultd--title')
             articles.text(updatedTitle);
 
             doc.post.title = updatedTitle
@@ -346,7 +346,7 @@ new Vue({
             Swal.fire({
               title: success_icon + 'Successfully Updated!',
               text: 'You can always change this again if needed.',              
-              customClass: 'ud_alert ud_alert_success',
+              customClass: 'ultd__alert ultd__alert_success',
               confirmButtonText: 'Go Back',
             });
             // if (articles.hasClass('collapsed')) {
@@ -371,7 +371,7 @@ new Vue({
         showCancelButton: true,
         confirmButtonText: UltimateDoc.confirmBtn,
         cancelButtonText: UltimateDoc.cancelBtn,
-        customClass: 'ud_form_modal',
+        customClass: 'ultd__form_modal',
         inputValidator: this.swalInputValidator,
       }).then(function (input) {
         if (input.isDismissed) {
@@ -417,7 +417,7 @@ new Vue({
             title: 'Error! ',
             text: 'A page already included in antoher doc!',
             icon: 'error',
-            customClass: 'ud_alert ud_alert_error'
+            customClass: 'ultd__alert ultd__alert_error'
           });
           return;
         }
@@ -430,7 +430,7 @@ new Vue({
         // }
         wp.ajax.send({
           data: {
-            action: 'ud_save_include_exclude',
+            action: 'ultd__save_include_exclude',
             include_ids: include_ids,
             exclude_ids: exclude_ids,
             post_id: doc.post.id,
@@ -438,8 +438,8 @@ new Vue({
             _wpnonce: UltimateDoc.nonce,
           },
           success: function (res) {
-            // var articles = jQuery(parentEvent.target).parents('.ud-row-actions')
-            //   .siblings('a').find('.ud-title')
+            // var articles = jQuery(parentEvent.target).parents('.ultd--row-actions')
+            //   .siblings('a').find('.ultd--title')
             // articles.text(updatedTitle);
             // console.log(res);
             doc.post.include_pages = res.include_pages;
@@ -450,7 +450,7 @@ new Vue({
             Swal.fire({
               title: success_icon + 'Successfully Updated!',
               text: 'You can always change this again if needed.',              
-              customClass: 'ud_alert ud_alert_success',
+              customClass: 'ultd__alert ultd__alert_success',
               confirmButtonText: 'Go Back',
             });
             // if (articles.hasClass('collapsed')) {
@@ -478,7 +478,7 @@ new Vue({
         confirmButtonColor: '#F54343',
         confirmButtonText: UltimateDoc.delConfirmBtn,
         cancelButtonText: UltimateDoc.cancelBtn,
-        customClass: 'ud_alert ud_alert_delete'
+        customClass: 'ultd__alert ultd__alert_delete'
       }).then(function (action) {
         if (action.isConfirmed) {
           self.removePost(article, articles);
@@ -491,7 +491,7 @@ new Vue({
 
       wp.ajax.send({
         data: {
-          action: 'ud_remove_doc',
+          action: 'ultd__remove_doc',
           id: items[index].post.id,
           _wpnonce: UltimateDoc.nonce,
         },
@@ -502,7 +502,7 @@ new Vue({
             Swal.fire({
               title: success_icon + 'Successfully Deleted!',
               // text: 'You can always change this again if needed.',              
-              customClass: 'ud_alert ud_alert_success',
+              customClass: 'ultd__alert ultd__alert_success',
               confirmButtonText: 'Go Back',
             });
         },
@@ -517,13 +517,13 @@ new Vue({
     },
     actionMenu: function (event) {
 
-      jQuery('span.ud-row-actions li.active').removeClass('active');
+      jQuery('span.ultd--row-actions li.active').removeClass('active');
       jQuery(event.path[0]).parent('li').toggleClass('active');
       jQuery(event.path[0]).parent().parent('li').toggleClass('active');
 
     },
     onClickOutside() {
-      jQuery('span.ud-row-actions li.active').removeClass('active');
+      jQuery('span.ultd--row-actions li.active').removeClass('active');
 
     },
   },
@@ -548,17 +548,17 @@ jQuery(document).ready(function ($) {
   var selectedval = $('#ia_show_all_doc');
   if (selectedval.is(':checked')) {
     console.log('ok')
-    $('.ud-ia-select-doc').hide();
+    $('.ultd--ia-select-doc').hide();
   } else {
-    $('.ud-ia-select-doc').show();
+    $('.ultd--ia-select-doc').show();
 
   }
   $('#ia_show_all_doc').on('change', function () {
     var selectedval = $(this);
     if (selectedval.is(':checked')) {
-      $('.ud-ia-select-doc').hide();
+      $('.ultd--ia-select-doc').hide();
     } else {
-      $('.ud-ia-select-doc').show();
+      $('.ultd--ia-select-doc').show();
 
     }
 
@@ -567,11 +567,11 @@ jQuery(document).ready(function ($) {
 
   var selectedval = $('#ia_doc_show_type').val();
   if ('condition' == selectedval) {
-    $('.ud-setting-info').show();
+    $('.ultd--setting-info').show();
     $('.ia-show-type-normal').hide();
     console.log('ok');
   } else {
-    $('.ud-setting-info').hide();
+    $('.ultd--setting-info').hide();
     $('.ia-show-type-normal').show();
   }
 
@@ -579,17 +579,17 @@ jQuery(document).ready(function ($) {
   $('#ia_doc_show_type').on('change', function () {
     var selectedval = $(this).val();
     if ('condition' == selectedval) {
-      $('.ud-setting-info').show();
+      $('.ultd--setting-info').show();
       $('.ia-show-type-normal').hide();
     } else {
-      $('.ud-setting-info').hide();
+      $('.ultd--setting-info').hide();
       $('.ia-show-type-normal').show();
     }
   });
 
 
-  // var limen = jQuery('.ud-row-actions li .toggler');
-  // $(document).on('click', '.ud-row-actions li .toggler', function (e) {
+  // var limen = jQuery('.ultd--row-actions li .toggler');
+  // $(document).on('click', '.ultd--row-actions li .toggler', function (e) {
   //   limen.parent('li.active').removeClass('active');
 
 

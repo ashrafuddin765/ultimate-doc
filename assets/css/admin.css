@@ -12,13 +12,13 @@
   display: none;
 }
 
-.ud-no-docs {
+.ultd--no-docs {
   text-align: center;
   padding: 60px;
   color: #777;
 }
 
-.ud-no-docs.not-loaded {
+.ultd--no-docs.not-loaded {
   display: none;
 }
 
@@ -64,11 +64,11 @@
   line-height: 28px;
 }
 
-.single-doc h3 .ud-row-actions {
+.single-doc h3 .ultd--row-actions {
   float: right;
 }
 
-.single-doc:hover h3 .ud-row-actions {
+.single-doc:hover h3 .ultd--row-actions {
   visibility: visible;
 }
 
@@ -125,7 +125,7 @@
   margin-bottom: 10px;
 }
 
-.single-doc .inside ul.articles li.article:hover .ud-row-actions {
+.single-doc .inside ul.articles li.article:hover .ultd--row-actions {
   visibility: visible;
 }
 
@@ -144,22 +144,22 @@
   align-items: center;
 }
 
-.ud-row-actions {
+.ultd--row-actions {
   display: block;
   position: relative;
 }
 
-.ud-row-actions a {
+.ultd--row-actions a {
   color: #999;
 }
 
-.ud-row-actions .dashicons {
+.ultd--row-actions .dashicons {
   height: 18px;
   width: 18px;
   font-size: 18px;
 }
 
-.ud-row-actions .dashicons:hover {
+.ultd--row-actions .dashicons:hover {
   color: #555;
 }
 
@@ -191,11 +191,11 @@ ul.sections .actions {
   float: right;
 }
 
-.ud-btn-reorder {
+.ultd--btn-reorder {
   cursor: move;
 }
 
-.ud-btn-remove {
+.ultd--btn-remove {
   cursor: pointer;
 }
 
@@ -310,7 +310,7 @@ a.fd-doc-page-title svg {
   margin-right: 5px;
 }
 
-h1.ud-page-title {
+h1.ultd--page-title {
   font-family: Inter;
   font-style: normal;
   font-weight: 600;
@@ -320,12 +320,12 @@ h1.ud-page-title {
   align-items: center;
 }
 
-h1.ud-page-title>svg {
+h1.ultd--page-title>svg {
   margin-right: 5px;
   width: 26px;
 }
 
-span.ud-row-actions ul.action-sub-menu {
+span.ultd--row-actions ul.action-sub-menu {
   position: absolute;
   right: 0;
   top: 100%;
@@ -347,14 +347,14 @@ ul.actions-menu>li {
   position: relative;
 }
 
-span.ud-row-actions li.active ul.action-sub-menu {
+span.ultd--row-actions li.active ul.action-sub-menu {
   visibility: visible;
   opacity: 1;
   transform: translate(0);
 }
 
-span.ud-row-actions ul.action-sub-menu a,
-span.ud-row-actions ul.action-sub-menu span {
+span.ultd--row-actions ul.action-sub-menu a,
+span.ultd--row-actions ul.action-sub-menu span {
   font-family: Inter;
   font-style: normal;
   font-weight: 500;
@@ -418,15 +418,15 @@ a.add-section-btn svg {
   width: 11px;
 }
 
-span.ud-row-actions li ul.action-sub-menu li:last-child {
+span.ultd--row-actions li ul.action-sub-menu li:last-child {
   margin-bottom: 0;
 }
 
-span.ud-row-actions ul.action-sub-menu .ud-btn-remove {
+span.ultd--row-actions ul.action-sub-menu .ultd--btn-remove {
   color: #F82C2C;
 }
 
-span.ud-row-actions .actions-menu .toggler {
+span.ultd--row-actions .actions-menu .toggler {
   background: rgb(5 5 5 / 5%);
   width: 20px;
   height: 20px;
@@ -442,15 +442,15 @@ span.ud-row-actions .actions-menu .toggler {
   margin-right: 5px;
 }
 
-span.ud-row-actions ul.action-sub-menu a:hover,
-span.ud-row-actions ul.action-sub-menu span:hover {
+span.ultd--row-actions ul.action-sub-menu a:hover,
+span.ultd--row-actions ul.action-sub-menu span:hover {
   transform: translatex(5px);
 }
 
 
 /* tab css  */
 /* Style the tab */
-.ud-setting-tabs-menu {
+.ultd--setting-tabs-menu {
   border-bottom: 2px solid rgb(22 22 23 / 8%);
   background-color: #fff;
   display: flex;
@@ -460,7 +460,7 @@ span.ud-row-actions ul.action-sub-menu span:hover {
 }
 
 /* Style the buttons that are used to open the tab content */
-.ud-setting-tabs-menu button {
+.ultd--setting-tabs-menu button {
   background-color: inherit;
   float: left;
   border: none;
@@ -478,31 +478,31 @@ span.ud-row-actions ul.action-sub-menu span:hover {
 }
 
 /* Change background color of buttons on hover */
-.ud-setting-tabs-menu button:hover {
+.ultd--setting-tabs-menu button:hover {
   opacity: 1;
 }
 
 /* Create an active/current tablink class */
-.ud-setting-tabs-menu button.active {
+.ultd--setting-tabs-menu button.active {
   opacity: 1;
   border-color: #4A3BFD;
 }
 
 /* Style the tab content */
-.ud-tab-content {
+.ultd--tab-content {
   display: none;
   padding: 6px 12px;
   border-top: none;
   padding: 20px 25px;
 }
 
-.ud-setting-field {
+.ultd--setting-field {
   display: flex;
   align-items: center;
   margin-bottom: 15px;
 }
 
-.ud-setting-field label {
+.ultd--setting-field label {
   width: 300px;
   font-size: 14px;
   color: #18181B;
@@ -512,7 +512,7 @@ span.ud-row-actions ul.action-sub-menu span:hover {
 }
 
 
-div#ud-settings {
+div#ultd--settings {
   background-color: #fff;
   border-radius: 10px;
   overflow: hidden;
@@ -520,13 +520,13 @@ div#ud-settings {
   border-radius: 3px;
 }
 
-.ud-setting-tabs-menu li {
+.ultd--setting-tabs-menu li {
   margin-bottom: 0;
   margin: 0 15px;
 }
 
-.ud-setting-field select,
-.ud-setting-field input:not([type=checkbox]) {
+.ultd--setting-field select,
+.ultd--setting-field input:not([type=checkbox]) {
   height: 45px;
   padding: 0px 19px;
   border: 1px solid #E4E4E7;
@@ -536,7 +536,7 @@ div#ud-settings {
   font-family: 'Inter';
 }
 
-div#ud-settings form button[type=submit] {
+div#ultd--settings form button[type=submit] {
   background: #4A3BFD;
   color: #fff;
   padding: 9px 17px;
@@ -546,19 +546,19 @@ div#ud-settings form button[type=submit] {
   cursor: pointer;margin-left: 25px;
 }
 
-.ud-setting-field .ud-setting-checkbox {
+.ultd--setting-field .ultd--setting-checkbox {
   margin: 15px 0;
   width: 18px;
   height: 18px;
 }
 
-.ud-setting-checkbox {
+.ultd--setting-checkbox {
   position: relative
 }
 
 
 /* Hide the browser's default checkbox */
-.ud-setting-checkbox input[type=checkbox] {
+.ultd--setting-checkbox input[type=checkbox] {
   position: absolute;
   opacity: 0;
   cursor: pointer;
@@ -568,7 +568,7 @@ div#ud-settings form button[type=submit] {
 }
 
 /* Create a custom checkbox */
-.ud-checkmark {
+.ultd--checkmark {
   position: absolute;
   top: 0;
   left: 0;
@@ -580,29 +580,29 @@ div#ud-settings form button[type=submit] {
 }
 
 /* On mouse-over, add a grey background color */
-.ud-setting-checkbox:hover input[type=checkbox]~.ud-checkmark {
+.ultd--setting-checkbox:hover input[type=checkbox]~.ultd--checkmark {
   background-color: #ccc;
 }
 
 /* When the checkbox is checked, add a blue background */
-.ud-setting-checkbox input[type=checkbox]:checked~.ud-checkmark {
+.ultd--setting-checkbox input[type=checkbox]:checked~.ultd--checkmark {
   background-color: #4A3BFD;
 }
 
-/* Create the ud-checkmark/indicator (hidden when not checked) */
-.ud-checkmark:after {
+/* Create the ultd--checkmark/indicator (hidden when not checked) */
+.ultd--checkmark:after {
   content: "";
   position: absolute;
   display: none;
 }
 
-/* Show the ud-checkmark when checked */
-.ud-setting-checkbox input[type=checkbox]:checked~.ud-checkmark:after {
+/* Show the ultd--checkmark when checked */
+.ultd--setting-checkbox input[type=checkbox]:checked~.ultd--checkmark:after {
   display: block;
 }
 
-/* Style the ud-checkmark/indicator */
-.ud-setting-checkbox .ud-checkmark:after {
+/* Style the ultd--checkmark/indicator */
+.ultd--setting-checkbox .ultd--checkmark:after {
   left: 7px;
   top: 4px;
   width: 3px;
@@ -614,7 +614,7 @@ div#ud-settings form button[type=submit] {
   transform: rotate(45deg);
 }
 
-.ud-tab-content h4.ud-field-group-title {
+.ultd--tab-content h4.ultd--field-group-title {
   font-style: normal;
   font-weight: 500;
   font-size: 11px;
@@ -623,18 +623,18 @@ div#ud-settings form button[type=submit] {
   font-family: 'Inter';
 }
 
-.ud-tab-content hr {
+.ultd--tab-content hr {
   margin: 30px 0;
   border-color: #E4E4E7;
 }
 
 /* Modal css  */
-.swal2-popup.swal2-modal.ud_form_modal {
+.swal2-popup.swal2-modal.ultd__form_modal {
 
   padding: 0 45px 50px;
 }
 
-.swal2-popup.swal2-modal.ud_form_modal #swal2-title {
+.swal2-popup.swal2-modal.ultd__form_modal #swal2-title {
   text-align: left;
   font-family: 'Inter';
   font-style: normal;
@@ -646,14 +646,14 @@ div#ud-settings form button[type=submit] {
   margin-bottom: 15px;
 }
 
-.swal2-popup.swal2-modal.ud_form_modal div#swal2-html-container {
+.swal2-popup.swal2-modal.ultd__form_modal div#swal2-html-container {
   text-align: left;
   justify-content: flex-start;
   margin-top: 0;
   margin: 0;
 }
 
-.swal2-popup.swal2-modal.ud_form_modal .swal2-input-label {
+.swal2-popup.swal2-modal.ultd__form_modal .swal2-input-label {
   justify-content: flex-start;
   font-family: 'Inter';
   font-style: normal;
@@ -661,7 +661,7 @@ div#ud-settings form button[type=submit] {
   font-size: 14px;
 }
 
-.swal2-popup.swal2-modal.ud_form_modal input {
+.swal2-popup.swal2-modal.ultd__form_modal input {
   margin: 6px 0 0;
   width: 100%;
   height: 45px;
@@ -675,13 +675,13 @@ div#ud-settings form button[type=submit] {
   box-shadow: unset;
 }
 
-.swal2-popup.swal2-modal.ud_form_modal .swal2-actions {
+.swal2-popup.swal2-modal.ultd__form_modal .swal2-actions {
   justify-content: flex-start;
   text-align: left;
   margin: 1em 0 0;
 }
 
-.swal2-popup.swal2-modal.ud_form_modal button {
+.swal2-popup.swal2-modal.ultd__form_modal button {
   font-family: 'Inter';
   font-style: normal;
   font-weight: 500;
@@ -695,19 +695,19 @@ div#ud-settings form button[type=submit] {
   border: 1px solid #D4D4D8;
 }
 
-.swal2-popup.swal2-modal.ud_form_modal button.swal2-confirm {
+.swal2-popup.swal2-modal.ultd__form_modal button.swal2-confirm {
   background: #4A3BFD;
   color: #fff;
   border: none;
 }
 
 
-.swal2-popup.swal2-modal.ud_alert {
+.swal2-popup.swal2-modal.ultd__alert {
   padding: 48px;
   width: 565px;
 }
 
-.swal2-popup.ud_alert .swal2-title {
+.swal2-popup.ultd__alert .swal2-title {
   text-align: left;
   color: #18181B;
   font-family: 'Inter';
@@ -719,13 +719,13 @@ div#ud-settings form button[type=submit] {
   margin-bottom: 10px;
 }
 
-.swal2-popup.ud_alert .swal2-title svg {
+.swal2-popup.ultd__alert .swal2-title svg {
   display: block;
   margin-bottom: 20px;
   width: 20px;
 }
 
-.swal2-popup.ud_alert div#swal2-html-container {
+.swal2-popup.ultd__alert div#swal2-html-container {
   text-align: left;
   margin: 0;
   font-family: 'Inter';
@@ -736,14 +736,14 @@ div#ud-settings form button[type=submit] {
   color: #71717A;
 }
 
-.swal2-popup.swal2-modal.ud_alert .swal2-actions {
+.swal2-popup.swal2-modal.ultd__alert .swal2-actions {
   justify-content: flex-start;
   width: 100%;
   margin-top: 15px;
 }
 
-.swal2-popup.swal2-modal.ud_alert .swal2-actions button.swal2-confirm,
-.swal2-popup.swal2-modal.ud_alert .swal2-actions button.swal2-cancel {
+.swal2-popup.swal2-modal.ultd__alert .swal2-actions button.swal2-confirm,
+.swal2-popup.swal2-modal.ultd__alert .swal2-actions button.swal2-cancel {
   padding: 13px 20px;
   border-radius: 3px;
   font-family: 'Inter';
@@ -755,24 +755,24 @@ div#ud-settings form button[type=submit] {
   height: 45px;
 }
 
-.swal2-popup.swal2-modal.ud_alert .swal2-actions button.swal2-cancel {
+.swal2-popup.swal2-modal.ultd__alert .swal2-actions button.swal2-cancel {
   background: #fff;
   border: 1px solid #D4D4D8;
   color: #18181B;
 }
 
-.swal2-popup.swal2-modal.ud_alert .swal2-actions button.swal2-confirm {
+.swal2-popup.swal2-modal.ultd__alert .swal2-actions button.swal2-confirm {
   background: #4A3BFD;
   box-shadow: unset;
 }
 
 
 /* no doc css  */
-.ud-no-docs>svg {
+.ultd--no-docs>svg {
   opacity: .5;
 }
 
-.ud-no-docs h4 {
+.ultd--no-docs h4 {
   font-family: 'Inter';
   font-style: normal;
   font-weight: 600;
@@ -783,7 +783,7 @@ div#ud-settings form button[type=submit] {
   margin-bottom: 8px;
 }
 
-.ud-no-docs p {
+.ultd--no-docs p {
   font-family: 'Inter';
   font-style: normal;
   font-weight: 400;
@@ -794,7 +794,7 @@ div#ud-settings form button[type=submit] {
   margin-top: 0;
 }
 
-.ud-no-docs a.fd-doc-page-title {
+.ultd--no-docs a.fd-doc-page-title {
   background: #4A3BFD;
   color: #fff;
   border: none;
@@ -813,8 +813,8 @@ div#ud-settings form button[type=submit] {
     margin-right: 0;
   }
 
-  .ud-setting-field select,
-  .ud-setting-field input:not([type=checkbox]) {
+  .ultd--setting-field select,
+  .ultd--setting-field input:not([type=checkbox]) {
     width: 100%;
     margin-top: 10px;
   }

@@ -10,29 +10,29 @@ class Ajax {
      * Bind actions.
      */
     public function __construct() {
-        add_action( 'wp_ajax_ud_feedback', [$this, 'feedback_handler'] );
-        add_action( 'wp_ajax_nopriv_ud_feedback', [$this, 'feedback_handler'] );
+        add_action( 'wp_ajax_ultd__feedback', [$this, 'feedback_handler'] );
+        add_action( 'wp_ajax_nopriv_ultd__feedback', [$this, 'feedback_handler'] );
 
-        add_action( 'wp_ajax_ud_get_articles', [$this, 'get_articles'] );
-        add_action( 'wp_ajax_nopriv_ud_get_articles', [$this, 'get_articles'] );
+        add_action( 'wp_ajax_ultd__get_articles', [$this, 'get_articles'] );
+        add_action( 'wp_ajax_nopriv_ultd__get_articles', [$this, 'get_articles'] );
 
-        add_action( 'wp_ajax_ud_search_article', [$this, 'get_articles'] );
-        add_action( 'wp_ajax_nopriv_ud_search_article', [$this, 'get_articles'] );
+        add_action( 'wp_ajax_ultd__search_article', [$this, 'get_articles'] );
+        add_action( 'wp_ajax_nopriv_ultd__search_article', [$this, 'get_articles'] );
 
-        add_action( 'wp_ajax_ud_show_article', [$this, 'show_article'] );
-        add_action( 'wp_ajax_nopriv_ud_show_article', [$this, 'show_article'] );
+        add_action( 'wp_ajax_ultd__show_article', [$this, 'show_article'] );
+        add_action( 'wp_ajax_nopriv_ultd__show_article', [$this, 'show_article'] );
 
-        add_action( 'wp_ajax_ud_send_mail', [$this, 'process_contact_form'] );
-        add_action( 'wp_ajax_nopriv_ud_send_mail', [$this, 'process_contact_form'] );
+        add_action( 'wp_ajax_ultd__send_mail', [$this, 'process_contact_form'] );
+        add_action( 'wp_ajax_nopriv_ultd__send_mail', [$this, 'process_contact_form'] );
     }
 
     public function feedback_handler() {
 
-        check_ajax_referer( 'ud-nonce' );
+        check_ajax_referer( 'ultd--nonce' );
         $template = '<div class="wedocs-alert wedocs-alert-%s">%s</div>';
-        $previous = isset( $_COOKIE['ud_response'] ) ? explode( ',', $_COOKIE['ud_response'] ) : [];
-        $post_id  = intval( $_POST['post_id'] );
-        $type     = in_array( $_POST['type'], ['like', 'dislike'] ) ? $_POST['type'] : false;
+        $previous = isset( $_COOKIE['ultd__response'] ) ? explode( ',', sanitize_text_field( $_COOKIE['ultd__response'] ) ) : [];
+        $post_id  = intval( sanitize_text_field( $_POST['post_id'] ) );
+        $type     = in_array( $_POST['type'], ['like', 'dislike'] ) ? sanitize_text_field( $_POST['type'] ) : false;
 
         // check previous response
         if ( in_array( $post_id, $previous ) ) {
@@ -48,7 +48,7 @@ class Ajax {
             array_push( $previous, $post_id );
             $cookie_val = implode( ',', $previous );
 
-            $val = setcookie( 'ud_response', $cookie_val, time() + WEEK_IN_SECONDS, COOKIEPATH, COOKIE_DOMAIN );
+            $val = setcookie( 'ultd__response', $cookie_val, time() + WEEK_IN_SECONDS, COOKIEPATH, COOKIE_DOMAIN );
         }
 
         $message = sprintf( $template, 'success', __( 'Thanks for your feedback!', 'wedocs' ) );
@@ -61,11 +61,11 @@ class Ajax {
      * @return void
      */
     public function get_articles() {
-        check_ajax_referer( 'ud-nonce' );
+        check_ajax_referer( 'ultd--nonce' );
 
         $search_key      = false;
-        $ia_show_all_doc = ud_get_option( 'ia_show_all_doc', 'on' );
-        $ia_select_doc   = ud_get_option( 'ia_select_doc', [] );
+        $ia_show_all_doc = ultd__get_option( 'ia_show_all_doc', 'on' );
+        $ia_select_doc   = ultd__get_option( 'ia_select_doc', [] );
         if ( isset( $_POST['s'] ) ) {
             $search_key = sanitize_text_field( $_POST['s'] );
         }
@@ -109,13 +109,13 @@ class Ajax {
      * @return void
      */
     public function search_articles() {
-        check_ajax_referer( 'ud-nonce' );
+        check_ajax_referer( 'ultd--nonce' );
 
         if ( !isset( $_POST['s'] ) ) {
             wp_send_json_error();
         }
 
-        $search_key = $_POST['s'];
+        $search_key = sanitize_text_field( $_POST['s'] );
 
         $docs = get_posts( [
             'post_type'      => 'docs',
@@ -148,13 +148,13 @@ class Ajax {
      * @return void
      */
     public function show_article() {
-        check_ajax_referer( 'ud-nonce' );
+        check_ajax_referer( 'ultd--nonce' );
 
         if ( !isset( $_POST['id'] ) ) {
             wp_send_json_error();
         }
 
-        $id = $_POST['id'];
+        $id = sanitize_text_field( $_POST['id'] );
 
         $docs = get_post( $id );
 
@@ -176,9 +176,9 @@ class Ajax {
         $current_page_id  = $this->current_page_id ? $this->current_page_id : false;
         $result           = [];
         $type             = 'docs';
-        $ia_show_all_doc  = ud_get_option( 'ia_show_all_doc', 'on' );
-        $ia_select_doc    = ud_get_option( 'ia_select_doc', [] );
-        $ia_doc_show_type = ud_get_option( 'ia_doc_show_type', 'normal' );
+        $ia_show_all_doc  = ultd__get_option( 'ia_show_all_doc', 'on' );
+        $ia_select_doc    = ultd__get_option( 'ia_select_doc', [] );
+        $ia_doc_show_type = ultd__get_option( 'ia_doc_show_type', 'normal' );
 
         if ( !$docs ) {
             return $result;
@@ -196,7 +196,7 @@ class Ajax {
             $ia_include_pages = get_post_meta( $doc_id, 'ia_include_pages', true ) ? get_post_meta( $doc_id, 'ia_include_pages', false )[0] : [];
             $ia_exclude_pages = get_post_meta( $doc_id, 'ia_exclude_pages', true ) ? get_post_meta( $doc_id, 'ia_exclude_pages', false )[0] : [];
             $excluded         = false;
-            $article_count = 'doc' == $doc_type ? ud_get_total_article($doc->ID) : '';
+            $article_count = 'doc' == $doc_type ? ultd__get_total_article($doc->ID) : '';
 
             //Single article conditions
             if ( 'article' == $doc_type && 'condition' == $ia_doc_show_type ) {

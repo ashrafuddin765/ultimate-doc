@@ -77,28 +77,28 @@
     $doc_desc_font_size = get_theme_mod( 'doc_desc_font_size', '18px' );
     
     if (  $doc_head_desc_color) {
-        $ud_dynamic_css .= '.doc-header-desc p { color:' . esc_attr(  $doc_head_desc_color ) .' } ';
-        $ud_dynamic_css .= "\n";
+        $ultd__dynamic_css .= '.doc-header-desc p { color:' . esc_attr(  $doc_head_desc_color ) .' } ';
+        $ultd__dynamic_css .= "\n";
     }
     
     if ( $doc_desc_font_size ) {
-        $ud_dynamic_css .= '.doc-header-desc p { font-size:' . esc_attr( $doc_desc_font_size  ) .'px } ';
-        $ud_dynamic_css .= "\n";
+        $ultd__dynamic_css .= '.doc-header-desc p { font-size:' . esc_attr( $doc_desc_font_size  ) .'px } ';
+        $ultd__dynamic_css .= "\n";
     }
 
     if ( $doc_head_title_color) {
-        $ud_dynamic_css .= '.doc-header-title h1 { color:' . esc_attr( $doc_head_title_color ) .' } ';
-        $ud_dynamic_css .= "\n";
+        $ultd__dynamic_css .= '.doc-header-title h1 { color:' . esc_attr( $doc_head_title_color ) .' } ';
+        $ultd__dynamic_css .= "\n";
     }
 
     if (  $doc_title_font_size) {
-        $ud_dynamic_css .= '.doc-header-title h1 { font-size:' . esc_attr(  $doc_title_font_size ) .'px } ';
-        $ud_dynamic_css .= "\n";
+        $ultd__dynamic_css .= '.doc-header-title h1 { font-size:' . esc_attr(  $doc_title_font_size ) .'px } ';
+        $ultd__dynamic_css .= "\n";
     }
 
     if ( $doc_sec_title_gap) {
-        $ud_dynamic_css .= '.doc-header-title h1 { margin-bottom:' . esc_attr( $doc_sec_title_gap ) .'px } ';
-        $ud_dynamic_css .= "\n";
+        $ultd__dynamic_css .= '.doc-header-title h1 { margin-bottom:' . esc_attr( $doc_sec_title_gap ) .'px } ';
+        $ultd__dynamic_css .= "\n";
     }
 
 
@@ -107,241 +107,241 @@
 
 
     if ( $docs_bg_color) {
-        $ud_dynamic_css .= '.ud-main .ud-site-main  { background-color:' . esc_attr( $docs_bg_color ) .' } ';
-        $ud_dynamic_css .= "\n";
+        $ultd__dynamic_css .= '.ultd--main .ultd--site-main  { background-color:' . esc_attr( $docs_bg_color ) .' } ';
+        $ultd__dynamic_css .= "\n";
     }
 
     if( $docspadding ){
-        $ud_dynamic_css .= '.ud-main .ud-site-main {padding: ' . esc_attr( $docspadding ) . ' } ';
-        $ud_dynamic_css .= "\n";
+        $ultd__dynamic_css .= '.ultd--main .ultd--site-main {padding: ' . esc_attr( $docspadding ) . ' } ';
+        $ultd__dynamic_css .= "\n";
     }
 
     if ( $colum_bg_color) {
-        $ud_dynamic_css .= '.ud-site-main .docs-wraper { background-color:' . esc_attr( $colum_bg_color ) .' } ';
-        $ud_dynamic_css .= "\n";
+        $ultd__dynamic_css .= '.ultd--site-main .docs-wraper { background-color:' . esc_attr( $colum_bg_color ) .' } ';
+        $ultd__dynamic_css .= "\n";
     }
     if( $columnpadding ){
-        $ud_dynamic_css .= '.ud-site-main .docs-wraper {padding: ' . esc_attr( $columnpadding ) . ' } ';
-        $ud_dynamic_css .= "\n";
+        $ultd__dynamic_css .= '.ultd--site-main .docs-wraper {padding: ' . esc_attr( $columnpadding ) . ' } ';
+        $ultd__dynamic_css .= "\n";
     }
     if( $column_margin ){
-        $ud_dynamic_css .= '.ud-site-main .docs-wraper {margin: ' . esc_attr( $column_margin ) . ' } ';
-        $ud_dynamic_css .= "\n";
+        $ultd__dynamic_css .= '.ultd--site-main .docs-wraper {margin: ' . esc_attr( $column_margin ) . ' } ';
+        $ultd__dynamic_css .= "\n";
     }
     if( $column_border ){
-        $ud_dynamic_css .= '.ud-site-main .docs-wraper {border-top: ' . esc_attr( $column_border['top-width'] ) . ' } ';
-        $ud_dynamic_css .= "\n";
+        $ultd__dynamic_css .= '.ultd--site-main .docs-wraper {border-top: ' . esc_attr( $column_border['top-width'] ) . ' } ';
+        $ultd__dynamic_css .= "\n";
     }
     if( $column_border ){
-        $ud_dynamic_css .= '.ud-site-main .docs-wraper {border-right: ' . esc_attr( $column_border['right-width'] ) . ' } ';
-        $ud_dynamic_css .= "\n";
+        $ultd__dynamic_css .= '.ultd--site-main .docs-wraper {border-right: ' . esc_attr( $column_border['right-width'] ) . ' } ';
+        $ultd__dynamic_css .= "\n";
     }
     if( $column_border ){
-        $ud_dynamic_css .= '.ud-site-main .docs-wraper {border-bottom: ' . esc_attr( $column_border['bottom-width'] ) . ' } ';
-        $ud_dynamic_css .= "\n";
+        $ultd__dynamic_css .= '.ultd--site-main .docs-wraper {border-bottom: ' . esc_attr( $column_border['bottom-width'] ) . ' } ';
+        $ultd__dynamic_css .= "\n";
     }
     if( $column_border ){
-        $ud_dynamic_css .= '.ud-site-main .docs-wraper {border-left: ' . esc_attr( $column_border['left-width'] ) . ' } ';
-        $ud_dynamic_css .= "\n";
+        $ultd__dynamic_css .= '.ultd--site-main .docs-wraper {border-left: ' . esc_attr( $column_border['left-width'] ) . ' } ';
+        $ultd__dynamic_css .= "\n";
     }
     if( $column_border_type ){
-        $ud_dynamic_css .= '.ud-site-main .docs-wraper {border-style: ' . esc_attr( $column_border_type ) . ' } ';
-        $ud_dynamic_css .= "\n";
+        $ultd__dynamic_css .= '.ultd--site-main .docs-wraper {border-style: ' . esc_attr( $column_border_type ) . ' } ';
+        $ultd__dynamic_css .= "\n";
     }
     if( $column_border_color ){
-        $ud_dynamic_css .= '.ud-site-main .docs-wraper {border-color: ' . esc_attr( $column_border_color ) . ' } ';
-        $ud_dynamic_css .= "\n";
+        $ultd__dynamic_css .= '.ultd--site-main .docs-wraper {border-color: ' . esc_attr( $column_border_color ) . ' } ';
+        $ultd__dynamic_css .= "\n";
     }
     if( $column_border_radius ){
-        $ud_dynamic_css .= '.ud-site-main .docs-wraper {border-radius: ' . esc_attr( $column_border_radius ) . ' } ';
-        $ud_dynamic_css .= "\n";
+        $ultd__dynamic_css .= '.ultd--site-main .docs-wraper {border-radius: ' . esc_attr( $column_border_radius ) . ' } ';
+        $ultd__dynamic_css .= "\n";
     }
     //column hover
     
     if ( $colum_hover_color) {
-        $ud_dynamic_css .= '.ud-site-main .docs-wraper:hover { background-color:' . esc_attr( $colum_hover_color ) .' } ';
-        $ud_dynamic_css .= "\n";
+        $ultd__dynamic_css .= '.ultd--site-main .docs-wraper:hover { background-color:' . esc_attr( $colum_hover_color ) .' } ';
+        $ultd__dynamic_css .= "\n";
     }
     if( $hoverpadding ){
-        $ud_dynamic_css .= '.ud-site-main .docs-wraper:hover {padding: ' . esc_attr( $hoverpadding ) . ' } ';
-        $ud_dynamic_css .= "\n";
+        $ultd__dynamic_css .= '.ultd--site-main .docs-wraper:hover {padding: ' . esc_attr( $hoverpadding ) . ' } ';
+        $ultd__dynamic_css .= "\n";
     }
     if( $hover_border ){
-        $ud_dynamic_css .= '.ud-site-main .docs-wraper:hover {border-top: ' . esc_attr( $hover_border['top-width'] ) . ' } ';
-        $ud_dynamic_css .= "\n";
+        $ultd__dynamic_css .= '.ultd--site-main .docs-wraper:hover {border-top: ' . esc_attr( $hover_border['top-width'] ) . ' } ';
+        $ultd__dynamic_css .= "\n";
     }
     if( $hover_border){
-        $ud_dynamic_css .= '.ud-site-main .docs-wraper:hover {border-right: ' . esc_attr( $hover_border['right-width'] ) . ' } ';
-        $ud_dynamic_css .= "\n";
+        $ultd__dynamic_css .= '.ultd--site-main .docs-wraper:hover {border-right: ' . esc_attr( $hover_border['right-width'] ) . ' } ';
+        $ultd__dynamic_css .= "\n";
     }
     if( $hover_border ){
-        $ud_dynamic_css .= '.ud-site-main .docs-wraper:hover {border-bottom: ' . esc_attr( $hover_border['bottom-width'] ) . ' } ';
-        $ud_dynamic_css .= "\n";
+        $ultd__dynamic_css .= '.ultd--site-main .docs-wraper:hover {border-bottom: ' . esc_attr( $hover_border['bottom-width'] ) . ' } ';
+        $ultd__dynamic_css .= "\n";
     }
     if( $hover_border ){
-        $ud_dynamic_css .= '.ud-site-main .docs-wraper:hover {border-left: ' . esc_attr( $hover_border['left-width'] ) . ' } ';
-        $ud_dynamic_css .= "\n";
+        $ultd__dynamic_css .= '.ultd--site-main .docs-wraper:hover {border-left: ' . esc_attr( $hover_border['left-width'] ) . ' } ';
+        $ultd__dynamic_css .= "\n";
     }
     if( $hover_border_type ){
-        $ud_dynamic_css .= '.ud-site-main .docs-wraper:hover {border-style: ' . esc_attr( $hover_border_type ) . ' } ';
-        $ud_dynamic_css .= "\n";
+        $ultd__dynamic_css .= '.ultd--site-main .docs-wraper:hover {border-style: ' . esc_attr( $hover_border_type ) . ' } ';
+        $ultd__dynamic_css .= "\n";
     }
     if( $hover_border_color ){
-        $ud_dynamic_css .= '.ud-site-main .docs-wraper:hover {border-color: ' . esc_attr( $hover_border_color ) . ' } ';
-        $ud_dynamic_css .= "\n";
+        $ultd__dynamic_css .= '.ultd--site-main .docs-wraper:hover {border-color: ' . esc_attr( $hover_border_color ) . ' } ';
+        $ultd__dynamic_css .= "\n";
     }
     if( $hover_border_radius ){
-        $ud_dynamic_css .= '.ud-site-main .docs-wraper:hover {border-radius: ' . esc_attr( $hover_border_radius ) . 'px } ';
-        $ud_dynamic_css .= "\n";
+        $ultd__dynamic_css .= '.ultd--site-main .docs-wraper:hover {border-radius: ' . esc_attr( $hover_border_radius ) . 'px } ';
+        $ultd__dynamic_css .= "\n";
     }
     if ( $hover_title_font_color) {
-        $ud_dynamic_css .= '.ud-single-content .ud-entry-content h2:hover  { color:' . esc_attr( $hover_title_font_color ) .' } ';
-        $ud_dynamic_css .= "\n";
+        $ultd__dynamic_css .= '.ultd--single-content .ultd--entry-content h2:hover  { color:' . esc_attr( $hover_title_font_color ) .' } ';
+        $ultd__dynamic_css .= "\n";
     }
     // content area
     
     if ( $contetn_bg_color) {
-        $ud_dynamic_css .= '.ud-site-main .card-bottom  { background-color:' . esc_attr( $contetn_bg_color ) .' } ';
-        $ud_dynamic_css .= "\n";
+        $ultd__dynamic_css .= '.ultd--site-main .card-bottom  { background-color:' . esc_attr( $contetn_bg_color ) .' } ';
+        $ultd__dynamic_css .= "\n";
     }
 
     if( $contentpadding ){
-        $ud_dynamic_css .= '.ud-site-main .card-bottom {padding: ' . esc_attr( $contentpadding ) . ' } ';
-        $ud_dynamic_css .= "\n";
+        $ultd__dynamic_css .= '.ultd--site-main .card-bottom {padding: ' . esc_attr( $contentpadding ) . ' } ';
+        $ultd__dynamic_css .= "\n";
     }
     if( $doc_title_font_size ){
-        $ud_dynamic_css .= '.ud-single-content .ud-entry-content h2 {font-size: ' . esc_attr( $doc_title_font_size ) . 'px } ';
-        $ud_dynamic_css .= "\n";
+        $ultd__dynamic_css .= '.ultd--single-content .ultd--entry-content h2 {font-size: ' . esc_attr( $doc_title_font_size ) . 'px } ';
+        $ultd__dynamic_css .= "\n";
     }
     if ( $doc_title_font_color) {
-        $ud_dynamic_css .= '.ud-single-content .ud-entry-content h2  { color:' . esc_attr( $doc_title_font_color ) .' } ';
-        $ud_dynamic_css .= "\n";
+        $ultd__dynamic_css .= '.ultd--single-content .ultd--entry-content h2  { color:' . esc_attr( $doc_title_font_color ) .' } ';
+        $ultd__dynamic_css .= "\n";
     }
 
     if( $doc_title_gap ){
-        $ud_dynamic_css .= '.ud-single-content .ud-entry-content h2 {margin-bottom: ' . esc_attr( $doc_title_gap ) . 'px } ';
-        $ud_dynamic_css .= "\n";
+        $ultd__dynamic_css .= '.ultd--single-content .ultd--entry-content h2 {margin-bottom: ' . esc_attr( $doc_title_gap ) . 'px } ';
+        $ultd__dynamic_css .= "\n";
     }
     // description
     if( $doc_decription_font_size ){
-        $ud_dynamic_css .= '.ud-site-main .card-bottom .card-content p {font-size: ' . esc_attr( $doc_decription_font_size ) . 'px } ';
-        $ud_dynamic_css .= "\n";
+        $ultd__dynamic_css .= '.ultd--site-main .card-bottom .card-content p {font-size: ' . esc_attr( $doc_decription_font_size ) . 'px } ';
+        $ultd__dynamic_css .= "\n";
     }
     if ( $doc_description_color) {
-        $ud_dynamic_css .= '.ud-site-main .card-bottom .card-content p  { color:' . esc_attr( $doc_description_color ) .' } ';
-        $ud_dynamic_css .= "\n";
+        $ultd__dynamic_css .= '.ultd--site-main .card-bottom .card-content p  { color:' . esc_attr( $doc_description_color ) .' } ';
+        $ultd__dynamic_css .= "\n";
     }
 
     if( $doc_description_gap ){
-        $ud_dynamic_css .= '.ud-site-main .card-bottom .card-content p {margin-bottom: ' . esc_attr( $doc_description_gap ) . ' } ';
-        $ud_dynamic_css .= "\n";
+        $ultd__dynamic_css .= '.ultd--site-main .card-bottom .card-content p {margin-bottom: ' . esc_attr( $doc_description_gap ) . ' } ';
+        $ultd__dynamic_css .= "\n";
     }
 
     // thumbnail
     if ( $doc_thumbnail_width) {
-        $ud_dynamic_css .= '.ud-site-main .card-top .card-title img { width:' . esc_attr( $doc_thumbnail_width ) .'% } ';
-        $ud_dynamic_css .= "\n";
+        $ultd__dynamic_css .= '.ultd--site-main .card-top .card-title img { width:' . esc_attr( $doc_thumbnail_width ) .'% } ';
+        $ultd__dynamic_css .= "\n";
     }
     if ( $doc_thumbnail_height) {
-        $ud_dynamic_css .= '.ud-site-main .card-top .card-title img { height:' . esc_attr( $doc_thumbnail_height ) .'px } ';
-        $ud_dynamic_css .= "\n";
+        $ultd__dynamic_css .= '.ultd--site-main .card-top .card-title img { height:' . esc_attr( $doc_thumbnail_height ) .'px } ';
+        $ultd__dynamic_css .= "\n";
     }
 
     // doc button 
     if( $doc_button_font_size ){
-        $ud_dynamic_css .= '.ud-site-main .card-bottom .card-button a {font-size: ' . esc_attr( $doc_button_font_size ) . 'px } ';
-        $ud_dynamic_css .= "\n";
+        $ultd__dynamic_css .= '.ultd--site-main .card-bottom .card-button a {font-size: ' . esc_attr( $doc_button_font_size ) . 'px } ';
+        $ultd__dynamic_css .= "\n";
     }
     if ( $doc_font_color ) {
-        $ud_dynamic_css .= '.ud-site-main .card-bottom .card-button a  { color:' . esc_attr( $doc_font_color ) .' } ';
-        $ud_dynamic_css .= "\n";
+        $ultd__dynamic_css .= '.ultd--site-main .card-bottom .card-button a  { color:' . esc_attr( $doc_font_color ) .' } ';
+        $ultd__dynamic_css .= "\n";
     }
     if ( $doc_button_width ) {
-        $ud_dynamic_css .= '.ud-site-main .card-bottom .card-button a  { width:' . esc_attr( $doc_button_width ) .'px } ';
-        $ud_dynamic_css .= "\n";
+        $ultd__dynamic_css .= '.ultd--site-main .card-bottom .card-button a  { width:' . esc_attr( $doc_button_width ) .'px } ';
+        $ultd__dynamic_css .= "\n";
     }
     if ( $doc_button_height ) {
-        $ud_dynamic_css .= '.ud-site-main .card-bottom .card-button a  { height:' . esc_attr( $doc_button_height ) .'px } ';
-        $ud_dynamic_css .= "\n";
+        $ultd__dynamic_css .= '.ultd--site-main .card-bottom .card-button a  { height:' . esc_attr( $doc_button_height ) .'px } ';
+        $ultd__dynamic_css .= "\n";
     }
     if ( $doc_button_bg_color ) {
-        $ud_dynamic_css .= '.ud-site-main .card-bottom .card-button a  { background-color:' . esc_attr( $doc_button_bg_color ) .' } ';
-        $ud_dynamic_css .= "\n";
+        $ultd__dynamic_css .= '.ultd--site-main .card-bottom .card-button a  { background-color:' . esc_attr( $doc_button_bg_color ) .' } ';
+        $ultd__dynamic_css .= "\n";
     }
     if( $button_width_setting ){
-        $ud_dynamic_css .= '.ud-site-main .card-bottom .card-button a {border-top: ' . esc_attr( $button_width_setting['top-width'] ) . ' } ';
-        $ud_dynamic_css .= "\n";
+        $ultd__dynamic_css .= '.ultd--site-main .card-bottom .card-button a {border-top: ' . esc_attr( $button_width_setting['top-width'] ) . ' } ';
+        $ultd__dynamic_css .= "\n";
     }
     if( $button_width_setting ){
-        $ud_dynamic_css .= '.ud-site-main .card-bottom .card-button a {border-right: ' . esc_attr( $button_width_setting['right-width'] ) . ' } ';
-        $ud_dynamic_css .= "\n";
+        $ultd__dynamic_css .= '.ultd--site-main .card-bottom .card-button a {border-right: ' . esc_attr( $button_width_setting['right-width'] ) . ' } ';
+        $ultd__dynamic_css .= "\n";
     }
     if( $button_width_setting ){
-        $ud_dynamic_css .= '.ud-site-main .card-bottom .card-button a {border-bottom: ' . esc_attr( $button_width_setting['bottom-width'] ) . ' } ';
-        $ud_dynamic_css .= "\n";
+        $ultd__dynamic_css .= '.ultd--site-main .card-bottom .card-button a {border-bottom: ' . esc_attr( $button_width_setting['bottom-width'] ) . ' } ';
+        $ultd__dynamic_css .= "\n";
     }
     if( $button_width_setting ){
-        $ud_dynamic_css .= '.ud-site-main .card-bottom .card-button a {border-left: ' . esc_attr( $button_width_setting['left-width'] ) . ' } ';
-        $ud_dynamic_css .= "\n";
+        $ultd__dynamic_css .= '.ultd--site-main .card-bottom .card-button a {border-left: ' . esc_attr( $button_width_setting['left-width'] ) . ' } ';
+        $ultd__dynamic_css .= "\n";
     }
     if( $button_border_type ){
-        $ud_dynamic_css .= '.ud-site-main .card-bottom .card-button a {border-style: ' . esc_attr( $button_border_type ) . ' } ';
-        $ud_dynamic_css .= "\n";
+        $ultd__dynamic_css .= '.ultd--site-main .card-bottom .card-button a {border-style: ' . esc_attr( $button_border_type ) . ' } ';
+        $ultd__dynamic_css .= "\n";
     }
     if( $button_border_color ){
-        $ud_dynamic_css .= '.ud-site-main .card-bottom .card-button a {border-color: ' . esc_attr( $button_border_color ) . ' } ';
-        $ud_dynamic_css .= "\n";
+        $ultd__dynamic_css .= '.ultd--site-main .card-bottom .card-button a {border-color: ' . esc_attr( $button_border_color ) . ' } ';
+        $ultd__dynamic_css .= "\n";
     }
     if( $button_border_radius ){
-        $ud_dynamic_css .= '.ud-site-main .card-bottom .card-button a {border-radius: ' . esc_attr( $button_border_radius ) . 'px } ';
-        $ud_dynamic_css .= "\n";
+        $ultd__dynamic_css .= '.ultd--site-main .card-bottom .card-button a {border-radius: ' . esc_attr( $button_border_radius ) . 'px } ';
+        $ultd__dynamic_css .= "\n";
     }
     
     // button hover
     if ( $hover_font_color ) {
-        $ud_dynamic_css .= '.ud-site-main .card-bottom .card-button a:hover  { color:' . esc_attr( $hover_font_color ) .' } ';
-        $ud_dynamic_css .= "\n";
+        $ultd__dynamic_css .= '.ultd--site-main .card-bottom .card-button a:hover  { color:' . esc_attr( $hover_font_color ) .' } ';
+        $ultd__dynamic_css .= "\n";
     }
     if ( $hover_bg_button_color ) {
-        $ud_dynamic_css .= '.ud-site-main .card-bottom .card-button a:hover  { background-color:' . esc_attr( $hover_bg_button_color ) .' } ';
-        $ud_dynamic_css .= "\n";
+        $ultd__dynamic_css .= '.ultd--site-main .card-bottom .card-button a:hover  { background-color:' . esc_attr( $hover_bg_button_color ) .' } ';
+        $ultd__dynamic_css .= "\n";
     }
     if( $hover_border_button_width ){
-        $ud_dynamic_css .= '.ud-site-main .card-bottom .card-button a:hover {border-top: ' . esc_attr( $hover_border_button_width['top-width'] ) . ' } ';
-        $ud_dynamic_css .= "\n";
+        $ultd__dynamic_css .= '.ultd--site-main .card-bottom .card-button a:hover {border-top: ' . esc_attr( $hover_border_button_width['top-width'] ) . ' } ';
+        $ultd__dynamic_css .= "\n";
     }
     if( $hover_border_button_width ){
-        $ud_dynamic_css .= '.ud-site-main .card-bottom .card-button a:hover {border-right: ' . esc_attr( $hover_border_button_width['right-width'] ) . ' } ';
-        $ud_dynamic_css .= "\n";
+        $ultd__dynamic_css .= '.ultd--site-main .card-bottom .card-button a:hover {border-right: ' . esc_attr( $hover_border_button_width['right-width'] ) . ' } ';
+        $ultd__dynamic_css .= "\n";
     }
     if( $hover_border_button_width ){
-        $ud_dynamic_css .= '.ud-site-main .card-bottom .card-button a:hover {border-bottom: ' . esc_attr( $hover_border_button_width['bottom-width'] ) . ' } ';
-        $ud_dynamic_css .= "\n";
+        $ultd__dynamic_css .= '.ultd--site-main .card-bottom .card-button a:hover {border-bottom: ' . esc_attr( $hover_border_button_width['bottom-width'] ) . ' } ';
+        $ultd__dynamic_css .= "\n";
     }
     if( $hover_border_button_width ){
-        $ud_dynamic_css .= '.ud-site-main .card-bottom .card-button a:hover {border-left: ' . esc_attr( $hover_border_button_width['left-width'] ) . ' } ';
-        $ud_dynamic_css .= "\n";
+        $ultd__dynamic_css .= '.ultd--site-main .card-bottom .card-button a:hover {border-left: ' . esc_attr( $hover_border_button_width['left-width'] ) . ' } ';
+        $ultd__dynamic_css .= "\n";
     }
     if( $hoverborder_type ){
-        $ud_dynamic_css .= '.ud-site-main .card-bottom .card-button a:hover {border-style: ' . esc_attr( $hoverborder_type ) . ' } ';
-        $ud_dynamic_css .= "\n";
+        $ultd__dynamic_css .= '.ultd--site-main .card-bottom .card-button a:hover {border-style: ' . esc_attr( $hoverborder_type ) . ' } ';
+        $ultd__dynamic_css .= "\n";
     }
     if( $button_border_color ){
-        $ud_dynamic_css .= '.ud-site-main .card-bottom .card-button a:hover {border-color: ' . esc_attr( $button_border_color ) . ' } ';
-        $ud_dynamic_css .= "\n";
+        $ultd__dynamic_css .= '.ultd--site-main .card-bottom .card-button a:hover {border-color: ' . esc_attr( $button_border_color ) . ' } ';
+        $ultd__dynamic_css .= "\n";
     }
     if( $button_border_radius ){
-        $ud_dynamic_css .= '.ud-site-main .card-bottom .card-button a:hover {border-radius: ' . esc_attr( $button_border_radius ) . ' } ';
-        $ud_dynamic_css .= "\n";
+        $ultd__dynamic_css .= '.ultd--site-main .card-bottom .card-button a:hover {border-radius: ' . esc_attr( $button_border_radius ) . ' } ';
+        $ultd__dynamic_css .= "\n";
     }
 
     // count color
     if( $doc_count_font_size ){
-        $ud_dynamic_css .= '.ud-site-main .docs-templatetwo .docs-article .docs-article-total {font-size: ' . esc_attr( $doc_count_font_size ) . 'px } ';
-        $ud_dynamic_css .= "\n";
+        $ultd__dynamic_css .= '.ultd--site-main .docs-templatetwo .docs-article .docs-article-total {font-size: ' . esc_attr( $doc_count_font_size ) . 'px } ';
+        $ultd__dynamic_css .= "\n";
     }
     if( $item_count_color ){
-        $ud_dynamic_css .= '.ud-site-main .docs-templatetwo .docs-article .docs-article-total {color: ' . esc_attr( $item_count_color ) . ' } ';
-        $ud_dynamic_css .= "\n";
+        $ultd__dynamic_css .= '.ultd--site-main .docs-templatetwo .docs-article .docs-article-total {color: ' . esc_attr( $item_count_color ) . ' } ';
+        $ultd__dynamic_css .= "\n";
     }
 ?>

@@ -1,5 +1,5 @@
 <?php
-function ud_get_template_part( $slug, $name = '' ) {
+function ultd__get_template_part( $slug, $name = '' ) {
 
     $templates = [];
     $name      = (string) $name;
@@ -7,21 +7,21 @@ function ud_get_template_part( $slug, $name = '' ) {
     // lookup at theme/slug-name.php or finest/slug-name.php
     if ( '' !== $name ) {
         $templates[] = "{$slug}-{$name}.php";
-        $templates[] = UD_TEMPLATE . "{$slug}-{$name}.php";
+        $templates[] = ULTD_TEMPLATE . "{$slug}-{$name}.php";
     }
 
     $template = locate_template( $templates );
 
     // fallback to plugin default template
-    if ( !$template && $name && file_exists( UD_TEMPLATE . "{$slug}-{$name}.php" ) ) {
-        $template = UD_TEMPLATE . "{$slug}-{$name}.php";
+    if ( !$template && $name && file_exists( ULTD_TEMPLATE . "{$slug}-{$name}.php" ) ) {
+        $template = ULTD_TEMPLATE . "{$slug}-{$name}.php";
     }
 
     // if not yet found, lookup in slug.php only
     if ( !$template ) {
         $templates[] = "{$name}.php";
-        $templates[] = UD_TEMPLATE . "{$name}.php";
-       
+        $templates[] = ULTD_TEMPLATE . "{$name}.php";
+
         $template = locate_template( $templates );
     }
 
@@ -30,11 +30,11 @@ function ud_get_template_part( $slug, $name = '' ) {
     }
 }
 
-function ud_breadcrumbs() {
+function ultd__breadcrumbs() {
     global $post;
 
     $html = '';
-    $args = apply_filters( 'ud_breadcrumbs', [
+    $args = apply_filters( 'ultd__breadcrumbs', [
         'delimiter' => '<li class="delimiter"><span class="dashicons dashicons-arrow-right-alt2"></span></li>',
         'home'      => __( 'Home', 'ultimate-doc' ),
         'before'    => '<li><span class="current">',
@@ -43,16 +43,16 @@ function ud_breadcrumbs() {
 
     $breadcrumb_position = 1;
 
-    $html .= '<ul class="ud-breadcrumb" itemscope >';
-    $html .= ud_get_breadcrumb_item( $args['home'], home_url( '/' ), $breadcrumb_position );
+    $html .= '<ul class="ultd--breadcrumb" itemscope >';
+    $html .= ultd__get_breadcrumb_item( $args['home'], home_url( '/' ), $breadcrumb_position );
     $html .= $args['delimiter'];
 
-    $docs_home = ud_get_option( 'select_doc_homepage' );
+    $docs_home = ultd__get_option( 'select_doc_homepage' );
 
     if ( $docs_home ) {
         ++$breadcrumb_position;
 
-        $html .= ud_get_breadcrumb_item( __( 'Docs', 'ultimate-doc' ), get_permalink( $docs_home ), $breadcrumb_position );
+        $html .= ultd__get_breadcrumb_item( __( 'Docs', 'ultimate-doc' ), get_permalink( $docs_home ), $breadcrumb_position );
         $html .= $args['delimiter'];
     }
 
@@ -64,7 +64,7 @@ function ud_breadcrumbs() {
             ++$breadcrumb_position;
 
             $page          = get_post( $parent_id );
-            $breadcrumbs[] = ud_get_breadcrumb_item( get_the_title( $page->ID ), get_permalink( $page->ID ), $breadcrumb_position );
+            $breadcrumbs[] = ultd__get_breadcrumb_item( get_the_title( $page->ID ), get_permalink( $page->ID ), $breadcrumb_position );
             $parent_id     = $page->post_parent;
         }
 
@@ -80,10 +80,10 @@ function ud_breadcrumbs() {
 
     $html .= '</ul>';
 
-    echo apply_filters( 'ud_breadcrumbs_html', $html, $args );
+    echo apply_filters( 'ultd__breadcrumbs_html', $html, $args );
 }
 
-function ud_get_breadcrumb_item( $label, $permalink, $position = 1 ) {
+function ultd__get_breadcrumb_item( $label, $permalink, $position = 1 ) {
 
     return '<li itemprop="itemListElement" itemscope >
             <a itemprop="item" href="' . esc_attr( $permalink ) . '">
@@ -93,7 +93,7 @@ function ud_get_breadcrumb_item( $label, $permalink, $position = 1 ) {
 
 }
 
-function ud_css_strip_whitespace( $css ) {
+function ultd__css_strip_whitespace( $css ) {
     $replace = array(
         '#/\*.*?\*/#s' => '', // Strip C style comments.
         '#\s\s+#' => ' ', // Strip excess whitespace.
@@ -215,45 +215,45 @@ function fd_duplicator( $post_id ) {
 
 }
 
-function ud_get_option( $opt_name, $default = false ) {
-    $ud_options = get_option( 'ud_settings', 0 );
+function ultd__get_option( $opt_name, $default = false ) {
+    $ultd__options = get_option( 'ultd__settings', 0 );
 
-    if ( isset( $ud_options[$opt_name] ) ) {
-        return $ud_options[$opt_name];
+    if ( isset( $ultd__options[$opt_name] ) ) {
+        return $ultd__options[$opt_name];
     }
 
     return $default;
 }
 // body class added
 
-function ud_add_body_class( $classes ) {
+function ultd__add_body_class( $classes ) {
     $template = get_theme_mod( 'single_doc_template', 'template-01' );
 
-    $classes[] = 'ud-body';
+    $classes[] = 'ultd--body';
     if ( 'docs' == get_post_type() && is_single() ) {
-        $classes[] = 'ud-single-' . $template;
+        $classes[] = 'ultd--single-' . $template;
     }
 
     return $classes;
 };
-add_filter( 'body_class', 'ud_add_body_class' );
+add_filter( 'body_class', 'ultd__add_body_class' );
 
 /**
  * Register custom query vars
  *
  * @link https://codex.wordpress.org/Plugin_API/Filter_Reference/query_vars
  */
-function fddox_register_query_vars( $vars ) {
+function ultd__register_query_vars( $vars ) {
     $vars[] = 'doc-search';
     return $vars;
 }
-add_filter( 'query_vars', 'fddox_register_query_vars' );
+add_filter( 'query_vars', 'ultd__register_query_vars' );
 
 /**
  * Override Movie Archive Query
  * https://codex.wordpress.org/Plugin_API/Action_Reference/pre_get_posts
  */
-function ud_search_query( $query ) {
+function ultd__search_query( $query ) {
     // only run this query if we're on the job archive page and not on the admin side
     if ( $query->is_archive( 'docs' ) && $query->is_main_query() && !is_admin() ) {
         // get query vars from url.
@@ -263,20 +263,20 @@ function ud_search_query( $query ) {
         $query->set( 's', esc_attr( $search_key ) );
     }
 }
-add_action( 'pre_get_posts', 'ud_search_query' );
+add_action( 'pre_get_posts', 'ultd__search_query' );
 
-add_filter( 'template_include', 'ud_page_template' );
-function ud_page_template( $page_template ) {
+add_filter( 'template_include', 'ultd__page_template' );
+function ultd__page_template( $page_template ) {
     global $post;
-    $doc_page = ud_get_option( 'select_doc_homepage', 0 );
+    $doc_page = ultd__get_option( 'select_doc_homepage', 0 );
     if ( is_search() && 'docs' == get_query_var( 'post_type' ) ) {
-        $page_template = UD_DIR . 'templates/search.php';
+        $page_template = ULTD_DIR . 'templates/search.php';
     }
     ;
 
     if ( $doc_page == get_the_ID() ) {
 
-        $page_template = UD_DIR . '/templates/docs.php';
+        $page_template = ULTD_DIR . '/templates/docs.php';
 
     }
 
@@ -300,19 +300,19 @@ function wpse_288589_add_template_to_select( $post_templates, $wp_theme, $post, 
 
 add_filter( 'theme_page_templates', 'wpse_288589_add_template_to_select', 10, 4 );
 
-function ud_feedback_html() {
-    if ( !ud_get_option( 'docs_enable_feedback', true ) ) {
+function ultd__feedback_html() {
+    if ( !ultd__get_option( 'docs_enable_feedback', true ) ) {
         return;
     }
-    $previous    = isset( $_COOKIE['ud_response'] ) ? explode( ',', $_COOKIE['ud_response'] ) : [];
+    $previous    = isset( $_COOKIE['ultd__response'] ) ? explode( ',', sanitize_text_field( $_COOKIE['ultd__response'] ) ) : [];
     $is_disabled = in_array( get_the_ID(), $previous ) ? 'disabled' : '';
     ob_start();?>
-<div class="ud-footer-feedback <?php echo esc_attr( $is_disabled ) ?>">
+<div class="ultd--footer-feedback <?php echo esc_attr( $is_disabled ) ?>">
 
     <?php if ( 'disabled' == $is_disabled ): ?>
-        <span class="feedback-text"><?php esc_html_e( 'Your feedback has been taken already.', 'ud' )?></span>
+        <span class="feedback-text"><?php esc_html_e( 'Your feedback has been taken already.', 'ultimate-doc' )?></span>
     <?php else: ?>
-    <span class="feedback-text"><?php esc_html_e( 'Rate this article', 'ud' )?></span>
+    <span class="feedback-text"><?php esc_html_e( 'Rate this article', 'ultimate-doc' )?></span>
 
     <span class="like" data-type="like" data-id="<?php the_ID()?>"><svg width="14" height="13" viewBox="0 0 14 13"
             fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -345,7 +345,7 @@ function page_template( $template ) {
     return $template;
 }
 
-function ud_get_total_article( $id = '', $in_section = false ) {
+function ultd__get_total_article( $id = '', $in_section = false ) {
     $id = '' != $id ? $id : get_the_ID();
 
     $args = array(
@@ -381,7 +381,7 @@ function ud_get_total_article( $id = '', $in_section = false ) {
     return $counter;
 }
 
-function ud_update_exxisting_doc_type() {
+function ultd__update_exxisting_doc_type() {
 
     $args = array(
         'post_type'      => 'docs',
@@ -413,7 +413,7 @@ function ud_update_exxisting_doc_type() {
     }
 }
 
-function ud_redirec_section_to_article() {
+function ultd__redirec_section_to_article() {
     global $post;
     if ( $post && $post->ID && is_single() ) {
 
@@ -429,9 +429,9 @@ function ud_redirec_section_to_article() {
     }
 }
 
-add_action( 'template_redirect', 'ud_redirec_section_to_article' );
+add_action( 'template_redirect', 'ultd__redirec_section_to_article' );
 
-function ud_related_article( $parent_id ) {
+function ultd__related_article( $parent_id ) {
 
     $args = array(
         'post_type'      => 'docs',
@@ -447,9 +447,9 @@ function ud_related_article( $parent_id ) {
     $the_query = new WP_Query( $args );
 
     if ( $the_query->have_posts() ) {
-        echo '<div class="ud-related-article-wrap">';
+        echo '<div class="ultd--related-article-wrap">';
         echo '<h4> ' . esc_html__( 'Related Articles', 'ultimate-doc' ) . ' </h4>';
-        echo '<ul class="ud-related-articles">';
+        echo '<ul class="ultd--related-articles">';
         while ( $the_query->have_posts() ) {
             $the_query->the_post();
             $idd      = get_the_ID();
@@ -473,7 +473,7 @@ function ud_related_article( $parent_id ) {
     }
 }
 
-function ud_post_navigation( $id ) {
+function ultd__post_navigation( $id ) {
     $parent_id = wp_get_post_parent_id( $id );
     $argc      = [
         'post_type'      => 'docs',
@@ -502,18 +502,17 @@ function ud_post_navigation( $id ) {
     }
     ?>
 
-<div class="ud-navigation">
+<div class="ultd--navigation">
     <div class="previous">
         <?php if ( !empty( $prevID ) ) {?>
-        <a href="<?php echo the_permalink( $prevID ); ?>" title="<?php echo get_the_title( $prevID ); ?>"><span
-                class="dashicons dashicons-arrow-left-alt"></span> <?php echo get_the_title( $prevID ) ?></a>
-
+        <a href="<?php the_permalink( $prevID ); ?>" title="<?php echo esc_html(get_the_title( $prevID )); ?>"><span
+                class="dashicons dashicons-arrow-left-alt"></span> <?php echo esc_html(get_the_title( $prevID )) ?></a>
         <?php }?>
     </div>
     <div class="next">
         <?php if ( !empty( $nextID ) ) {?>
-        <a href="<?php the_permalink( $nextID );?>" title="<?php echo get_the_title( $nextID ); ?>">
-            <?php echo get_the_title( $nextID ) ?> <span class="dashicons dashicons-arrow-right-alt"></span></a>
+        <a href="<?php the_permalink( $nextID );?>" title="<?php echo esc_html(get_the_title( $nextID )); ?>">
+            <?php echo esc_html(get_the_title( $nextID )) ?> <span class="dashicons dashicons-arrow-right-alt"></span></a>
         <?php }?>
     </div>
 </div>
@@ -521,7 +520,7 @@ function ud_post_navigation( $id ) {
 
 }
 
-function ud_post_select( $args, $select_id, $selected = [], $attr = '', $echo = true ) {
+function ultd__post_select( $args, $select_id, $selected = [], $attr = '', $echo = true ) {
 
     $posts  = get_posts( $args );
     $select = '<select name="' . $select_id . '" id="' . rtrim( $select_id, '[]' ) . '" ' . $attr . '>';
@@ -539,19 +538,14 @@ function ud_post_select( $args, $select_id, $selected = [], $attr = '', $echo = 
     }
 }
 
-// function your_function() {
-//    ud_ia_query('docs');
-// }
-// add_action( 'wp_footer', 'your_function' );
+function ultd__set_missing_template_default() {
+    $single_template = get_theme_mod( 'single_doc_template', 'template-01' );
+    $docs            = get_theme_mod( 'docs_template_design', 'docs-template-01' );
+    $section         = get_theme_mod( 'section_select_template', 'section-template-01' );
 
-function ud_set_missing_template_default() {
-    $single_template  = get_theme_mod( 'single_doc_template', 'template-01' );
-    $docs    = get_theme_mod( 'docs_template_design', 'docs-template-01' );
-    $section = get_theme_mod( 'section_select_template', 'section-template-01' );
-
-    $template         = apply_filters( 'ud_include_single_template', UD_DIR . 'templates/single-template/' . $single_template . '.php' );
-    $doc_template     = apply_filters( 'ud_include_docs_template', UD_DIR . 'templates/docs-template/' . $docs . '.php' );
-    $section_template = apply_filters( 'ud_include_section_template', UD_DIR . 'templates/section-template/' . $section . '.php' );
+    $template         = apply_filters( 'ultd__include_single_template', ULTD_DIR . 'templates/single-template/' . $single_template . '.php' );
+    $doc_template     = apply_filters( 'ultd__include_docs_template', ULTD_DIR . 'templates/docs-template/' . $docs . '.php' );
+    $section_template = apply_filters( 'ultd__include_section_template', ULTD_DIR . 'templates/section-template/' . $section . '.php' );
 
     if ( !file_exists( $template ) ) {
         set_theme_mod( 'single_doc_template', 'template-01' );

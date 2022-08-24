@@ -4,7 +4,7 @@ $section_icon = get_theme_mod( 'section_upload_icon' );
 
 <div class="col-xl-6 col-lg-6 col-md-6">
     <div class="wraper template-third">
-        <div class="ud-content-area">
+        <div class="ultd--content-area">
             <div class="docs-title">
                 <h1>
                     <?php if(!empty($section_icon)): ?>
@@ -34,11 +34,11 @@ $section_icon = get_theme_mod( 'section_upload_icon' );
             </div>
             <div class="total-article">
                 <span class="article-total"><?php 
-                        $enable_article_count = ud_get_option('article_enable_post_count', true);
-                        $article_count_text = ud_get_option('article_count_text', 'Articles');
-                        $article_count_text_singular = ud_get_option('article_count_text_singular', 'Article');
+                        $enable_article_count = ultd__get_option('article_enable_post_count', true);
+                        $article_count_text = ultd__get_option('article_count_text', 'Articles');
+                        $article_count_text_singular = ultd__get_option('article_count_text_singular', 'Article');
                         if($first_child && $enable_article_count){
-                            $total_article = ud_get_total_article(get_the_ID(), true);
+                            $total_article = ultd__get_total_article(get_the_ID(), true);
 
                             if($total_article > 3){
 

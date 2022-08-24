@@ -1,5 +1,5 @@
 new Vue({
-    el: '#ud-ia',
+    el: '#ultd--ia',
     data: {
         editurl: '',
         viewurl: '',
@@ -32,14 +32,14 @@ new Vue({
         dom.find('ul.docs').removeClass('not-loaded').addClass('loaded');
 
         jQuery.post(
-            ud_vars.ajaxurl, {
-                action: 'ud_get_articles',
-                _wpnonce: ud_vars.nonce,
-                current_page_id: ud_vars.pageID,
+            ultd__vars.ajaxurl, {
+                action: 'ultd__get_articles',
+                _wpnonce: ultd__vars.nonce,
+                current_page_id: ultd__vars.pageID,
             },
             function (data) {
                 dom.find('.spinner').remove();
-                dom.find('.ud-no-docs').removeClass('not-loaded');
+                dom.find('.ultd--no-docs').removeClass('not-loaded');
 
                 self.docs = data.data;
                 console.log(data.data)
@@ -89,13 +89,13 @@ new Vue({
         //         article_search = jQuery(form).find('[name=article_search]').val();
 
         //     var data = {
-        //         action: 'ud_search_article',
+        //         action: 'ultd__search_article',
         //         s: doc_search,
         //         // article_search: article_search,
-        //         _wpnonce: ud_vars.nonce,
+        //         _wpnonce: ultd__vars.nonce,
         //     }
 
-        //     jQuery.post(ud_vars.ajaxurl, data, function (resp) {
+        //     jQuery.post(ultd__vars.ajaxurl, data, function (resp) {
 
         //         that.docs = resp.data
 
@@ -107,15 +107,15 @@ new Vue({
 
 
             var data = {
-                action: 'ud_send_mail',
+                action: 'ultd__send_mail',
                 name: this.name,
                 email: this.email,
                 subject: this.subject,
                 message: this.message,
-                _wpnonce: ud_vars.nonce,
+                _wpnonce: ultd__vars.nonce,
             }
 
-            jQuery.post(ud_vars.ajaxurl, data, function (resp) {
+            jQuery.post(ultd__vars.ajaxurl, data, function (resp) {
 
                 console.log(resp.data)
             });
@@ -124,13 +124,13 @@ new Vue({
         showArticle: function (el, doc) {
             var wrap = el.path[0]
 
-            jQuery(wrap).parent().find('.ud-entry-content').html('<h3 class=\'ud-title\'> <svg width="14" height="16" viewBox="0 0 14 16" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M4.75 8H9.25M4.75 11H9.25M10.75 14.75H3.25C2.42157 14.75 1.75 14.0784 1.75 13.25V2.75C1.75 1.92157 2.42157 1.25 3.25 1.25H7.43934C7.63825 1.25 7.82902 1.32902 7.96967 1.46967L12.0303 5.53033C12.171 5.67098 12.25 5.86175 12.25 6.06066V13.25C12.25 14.0784 11.5784 14.75 10.75 14.75Z" stroke="#111827" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /> </svg>' + doc.post.title + "</h3>" + doc.post.content);
+            jQuery(wrap).parent().find('.ultd--entry-content').html('<h3 class=\'ultd--title\'> <svg width="14" height="16" viewBox="0 0 14 16" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M4.75 8H9.25M4.75 11H9.25M10.75 14.75H3.25C2.42157 14.75 1.75 14.0784 1.75 13.25V2.75C1.75 1.92157 2.42157 1.25 3.25 1.25H7.43934C7.63825 1.25 7.82902 1.32902 7.96967 1.46967L12.0303 5.53033C12.171 5.67098 12.25 5.86175 12.25 6.06066V13.25C12.25 14.0784 11.5784 14.75 10.75 14.75Z" stroke="#111827" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /> </svg>' + doc.post.title + "</h3>" + doc.post.content);
             jQuery(wrap).parent().find('.full-article').addClass('active').parent('li').addClass('active').siblings().hide()
 
         },
         hideArticle: function (el) {
             jQuery(el.path[0]).parent().removeClass('active').parent('li').removeClass('active').siblings('li').show();
-            jQuery(el.path[0]).siblings('.ud-entry-content').html('');
+            jQuery(el.path[0]).siblings('.ultd--entry-content').html('');
         },
         showArticles: function (el, id) {
             var wrap = el.path[0]
@@ -156,8 +156,8 @@ new Vue({
 
 (function ($) {
 
-    $('.ud-ia-toggler div').on('click', function () {
-        $(this).removeClass('active').siblings().addClass('active').parent().siblings('.ud-ia-main').toggleClass('active');
+    $('.ultd--ia-toggler div').on('click', function () {
+        $(this).removeClass('active').siblings().addClass('active').parent().siblings('.ultd--ia-main').toggleClass('active');
     })
 
 })(jQuery);

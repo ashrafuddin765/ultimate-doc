@@ -4,12 +4,12 @@
   var UltimateDoc = {
     init: function () {
       this.toc();
-      $('.ud-container, .ud-container-fluid').parents('.ast-container').removeClass('ast-container');
-      $('.ud-footer-feedback').on('click', 'span.like, span.dislike', this.feedback);
-      $('ul.ud-nav-list .page_item_has_children').append('<span class="toggle-menu dashicons dashicons-arrow-up-alt2"></span>');
-      $('ul.ud-nav-list .page_item_has_children.current_page_parent').addClass('active');
+      $('.ultd--container, .ultd--container-fluid').parents('.ast-container').removeClass('ast-container');
+      $('.ultd--footer-feedback').on('click', 'span.like, span.dislike', this.feedback);
+      $('ul.ultd--nav-list .page_item_has_children').append('<span class="toggle-menu dashicons dashicons-arrow-up-alt2"></span>');
+      $('ul.ultd--nav-list .page_item_has_children.current_page_parent').addClass('active');
 
-      $('ul.ud-nav-list').on(
+      $('ul.ultd--nav-list').on(
         'click', '.page_item_has_children',
         function (event) {
 
@@ -40,13 +40,13 @@
 
       // doc grid masonry 
       if ($.fn.masonry) {
-        $('.ud-masonry').masonry({
+        $('.ultd--masonry').masonry({
           // options
-          itemSelector: '.ud-masonry>div',
+          itemSelector: '.ultd--masonry>div',
 
         });
 
-        $('.ud-print').on('click', function (e) {
+        $('.ultd--print').on('click', function (e) {
           e.preventDefault();
         }, this.docPrint)
       }
@@ -56,8 +56,8 @@
 
     docPrint: function () {
 
-      var title = document.querySelector('.ud-single-title');
-      var content = document.querySelector('.ud-entry-content');
+      var title = document.querySelector('.ultd--single-title');
+      var content = document.querySelector('.ultd--entry-content');
       var newWin = window.open('', 'Print-Window');
 
 
@@ -81,15 +81,15 @@
         return;
       }
       var self = $(this),
-        wrap = self.closest('.ud-footer-feedback'),
+        wrap = self.closest('.ultd--footer-feedback'),
         data = {
           post_id: self.data('id'),
           type: self.data('type'),
-          action: 'ud_feedback',
-          _wpnonce: ud_vars.nonce,
+          action: 'ultd__feedback',
+          _wpnonce: ultd__vars.nonce,
         };
 
-      $.post(ud_vars.ajaxurl, data, function (resp) {
+      $.post(ultd__vars.ajaxurl, data, function (resp) {
 
         wrap.addClass('disabled');
         wrap.find('.feedback-text').html(resp.data);
@@ -101,7 +101,7 @@
     toc: function () {
 
       var $autoc = $(".autoc");
-      var $content = $('.ud-entry-content');
+      var $content = $('.ultd--entry-content');
       var stopAt = $autoc.data("stopat");
       var hs = [];
       switch (stopAt) {
@@ -121,7 +121,7 @@
       hs = hs.join();
       var $heads = $content.find(hs);
       if ($heads.length === 0) {
-        $autoc.parent('.ud-autoc-wrap').hide();
+        $autoc.parent('.ultd--autoc-wrap').hide();
         return;
       }
       var toc = "";
@@ -166,14 +166,14 @@
   });
 
 
-  $('.ud-sidebar-trigger').on('click', function (event) {
-    $('#mainnav .ud-nav-inner').toggleClass('active');
+  $('.ultd--sidebar-trigger').on('click', function (event) {
+    $('#mainnav .ultd--nav-inner').toggleClass('active');
   });
 
   $(window).resize(function () {
     var w = $(window).width();
     if (w > 768) {
-      $('#mainnav .ud-nav-inner').removeAttr('style');
+      $('#mainnav .ultd--nav-inner').removeAttr('style');
     }
   });
 
@@ -185,13 +185,13 @@ function udTabs(evt, cityName) {
   var i, tabcontent, tablinks;
 
   // Get all elements with class="tabcontent" and hide them
-  tabcontent = document.getElementsByClassName("ud-tab-content");
+  tabcontent = document.getElementsByClassName("ultd--tab-content");
   for (i = 0; i < tabcontent.length; i++) {
     tabcontent[i].style.display = "none";
   }
 
   // Get all elements with class="tablinks" and remove the class "active"
-  tablinks = document.getElementsByClassName("ud-tab-link");
+  tablinks = document.getElementsByClassName("ultd--tab-link");
   for (i = 0; i < tablinks.length; i++) {
     tablinks[i].className = tablinks[i].className.replace(" active", "");
   }

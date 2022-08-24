@@ -5,7 +5,7 @@ $class    = $template;
 
 $ancestors        = [];
 $root             = $parent             = false;
-$enabled_multidoc = get_option( 'ud_sidebar_all_docs', true );
+$enabled_multidoc = get_option( 'ultd__sidebar_all_docs', true );
 $link_before      = '';
 if ( 'template-01' == $template ) {
     $link_before = '';
@@ -29,18 +29,18 @@ $children = wp_list_pages( [
     'post_type'   => 'docs',
     // 'link_after' => '<span class="toggle-menu dashicons dashicons-arrow-up-alt2"></span>',
     'link_before' => $link_before,
-    'walker'      => new UD_walker(),
+    'walker'      => new ULTD_walker(),
 ] );
 ?>
 
-<div class="ud-sidebar <?php echo esc_attr( $icon_pos ) ?> <?php echo esc_attr( $class ); ?>">
+<div class="ultd--sidebar <?php echo esc_attr( $icon_pos ) ?> <?php echo esc_attr( $class ); ?>">
     <nav id="mainnav">
-        <div id="menu" class="ud-sidebar-trigger"><span class="dashicons dashicons-menu"></span></div>
+        <div id="menu" class="ultd--sidebar-trigger"><span class="dashicons dashicons-menu"></span></div>
         <?php if ( $children ) {
     ?>
-        <div class="ud-nav-inner">
-            <div id="menu" class="ud-sidebar-trigger"><span class=" dashicons dashicons-no-alt"></span></div>
-            <ul class="ud-nav-list">
+        <div class="ultd--nav-inner">
+            <div id="menu" class="ultd--sidebar-trigger"><span class=" dashicons dashicons-no-alt"></span></div>
+            <ul class="ultd--nav-list">
                 <?php
 echo $children;
     ?>

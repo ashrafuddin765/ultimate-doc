@@ -11,59 +11,59 @@
     $search_border_radius = get_theme_mod( 'search_border_radius', '5px' );
 
     if($search_width){
-        $ud_dynamic_css .= 'form.search-form.ud-search-form input.search-field { width:' . esc_attr( $search_width ) .'% } ';
-        $ud_dynamic_css .= "\n";
+        $ultd__dynamic_css .= 'form.search-form.ultd--search-form input.search-field { width:' . esc_attr( $search_width ) .'% } ';
+        $ultd__dynamic_css .= "\n";
     }
     if($search_height){
-        $ud_dynamic_css .= 'form.search-form.ud-search-form input.search-field { height:' . esc_attr( $search_height ) .'px } ';
-        $ud_dynamic_css .= "\n";
+        $ultd__dynamic_css .= 'form.search-form.ultd--search-form input.search-field { height:' . esc_attr( $search_height ) .'px } ';
+        $ultd__dynamic_css .= "\n";
     }
 
     if ( $search_filed_color) {
-        $ud_dynamic_css .= 'form.search-form.ud-search-form input.search-field  { color:' . esc_attr( $search_filed_color ) .' } ';
-        $ud_dynamic_css .= "\n";
+        $ultd__dynamic_css .= 'form.search-form.ultd--search-form input.search-field  { color:' . esc_attr( $search_filed_color ) .' } ';
+        $ultd__dynamic_css .= "\n";
     }
     if ( $search_field_size ) {
-        $ud_dynamic_css .= 'form.search-form.ud-search-form input.search-field  { font-size:' . esc_attr( $search_field_size ) .' } ';
-        $ud_dynamic_css .= "\n";
+        $ultd__dynamic_css .= 'form.search-form.ultd--search-form input.search-field  { font-size:' . esc_attr( $search_field_size ) .' } ';
+        $ultd__dynamic_css .= "\n";
     }
 
     if( $docs_bg_color ){
-        $ud_dynamic_css .= 'form.search-form.ud-search-form input.search-field {background-color: ' . esc_attr( $docs_bg_color ) . ' } ';
-        $ud_dynamic_css .= "\n";
+        $ultd__dynamic_css .= 'form.search-form.ultd--search-form input.search-field {background-color: ' . esc_attr( $docs_bg_color ) . ' } ';
+        $ultd__dynamic_css .= "\n";
     }
     if(  $search_text_padding ){
-        $ud_dynamic_css .= 'form.search-form.ud-search-form input.search-field {padding-left: ' . esc_attr(  $search_text_padding ) . ' } ';
-        $ud_dynamic_css .= "\n";
+        $ultd__dynamic_css .= 'form.search-form.ultd--search-form input.search-field {padding-left: ' . esc_attr(  $search_text_padding ) . ' } ';
+        $ultd__dynamic_css .= "\n";
     }
 
     if( $search_border_setting ){
-        $ud_dynamic_css .= 'form.search-form.ud-search-form input.search-field {border-top: ' . esc_attr( $search_border_setting['top-width'] ) . ' } ';
-        $ud_dynamic_css .= "\n";
+        $ultd__dynamic_css .= 'form.search-form.ultd--search-form input.search-field {border-top: ' . esc_attr( $search_border_setting['top-width'] ) . ' } ';
+        $ultd__dynamic_css .= "\n";
     }
     if( $search_border_setting ){
-        $ud_dynamic_css .= 'form.search-form.ud-search-form input.search-field {border-right: ' . esc_attr( $search_border_setting['right-width'] ) . ' } ';
-        $ud_dynamic_css .= "\n";
+        $ultd__dynamic_css .= 'form.search-form.ultd--search-form input.search-field {border-right: ' . esc_attr( $search_border_setting['right-width'] ) . ' } ';
+        $ultd__dynamic_css .= "\n";
     }
     if( $search_border_setting ){
-        $ud_dynamic_css .= 'form.search-form.ud-search-form input.search-field {border-bottom: ' . esc_attr( $search_border_setting['bottom-width'] ) . ' } ';
-        $ud_dynamic_css .= "\n";
+        $ultd__dynamic_css .= 'form.search-form.ultd--search-form input.search-field {border-bottom: ' . esc_attr( $search_border_setting['bottom-width'] ) . ' } ';
+        $ultd__dynamic_css .= "\n";
     }
     if( $search_border_setting ){
-        $ud_dynamic_css .= 'form.search-form.ud-search-form input.search-field {border-left: ' . esc_attr( $search_border_setting['left-width'] ) . ' } ';
-        $ud_dynamic_css .= "\n";
+        $ultd__dynamic_css .= 'form.search-form.ultd--search-form input.search-field {border-left: ' . esc_attr( $search_border_setting['left-width'] ) . ' } ';
+        $ultd__dynamic_css .= "\n";
     }
     if(  $search_border_type ){
-        $ud_dynamic_css .= 'form.search-form.ud-search-form input.search-field {border-style: ' . esc_attr(  $search_border_type ) . ' } ';
-        $ud_dynamic_css .= "\n";
+        $ultd__dynamic_css .= 'form.search-form.ultd--search-form input.search-field {border-style: ' . esc_attr(  $search_border_type ) . ' } ';
+        $ultd__dynamic_css .= "\n";
     }
     if( $search_border_color ){
-        $ud_dynamic_css .= 'form.search-form.ud-search-form input.search-field {border-color: ' . esc_attr( $search_border_color ) . ' } ';
-        $ud_dynamic_css .= "\n";
+        $ultd__dynamic_css .= 'form.search-form.ultd--search-form input.search-field {border-color: ' . esc_attr( $search_border_color ) . ' } ';
+        $ultd__dynamic_css .= "\n";
     }
     if(  $search_border_radius ){
-        $ud_dynamic_css .= 'form.search-form.ud-search-form input.search-field {border-radius: ' . esc_attr(  $search_border_radius ) . ' } ';
-        $ud_dynamic_css .= "\n";
+        $ultd__dynamic_css .= 'form.search-form.ultd--search-form input.search-field {border-radius: ' . esc_attr(  $search_border_radius ) . ' } ';
+        $ultd__dynamic_css .= "\n";
     }
    
 ?>

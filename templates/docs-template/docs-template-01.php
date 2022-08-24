@@ -18,7 +18,7 @@
             </div>
             <div class="card-content">
                 <p><?php 
-                echo wp_trim_words( get_the_excerpt(),15); ?></p>
+                echo esc_html(wp_trim_words( get_the_excerpt(),15)); ?></p>
             </div>
             <div class="card-button">
                 <a href="<?php echo esc_url( get_the_permalink(  ) ) ?>"><?php _e( 'Read the doc', 'ultimate-doc' ) ?> </a>

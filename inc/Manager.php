@@ -37,7 +37,7 @@ class Manager {
     public function template_loader( $template ) {
 
 
-        $file = UD_TEMPLATE . 'single-docs.php';
+        $file = ULTD_TEMPLATE . 'single-docs.php';
 
         if ( file_exists($file) && 'docs' == get_post_type() && is_single() ) {
             $template = $file;

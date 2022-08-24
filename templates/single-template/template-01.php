@@ -1,20 +1,20 @@
 <?php 
-$class = 'ud-container-fluid';
-ud_get_template_part( 'ultimate-doc', 'sidebar' );
+$class = 'ultd--container-fluid';
+ultd__get_template_part( 'ultimate-doc', 'sidebar' );
 
 ?>
-<div class="ud-single-content">
-    <?php ud_breadcrumbs(); ?>
+<div class="ultd--single-content">
+    <?php ultd__breadcrumbs(); ?>
     <article id="post-<?php the_ID(); ?>">
-        <?php the_title( '<h1 class="ud-single-title">', '</h1>' ) ?>
+        <?php the_title( '<h1 class="ultd--single-title">', '</h1>' ) ?>
 
         <?php
-        $docs_enable_print = ud_get_option( 'docs_enable_print', true );
+        $docs_enable_print = ultd__get_option( 'docs_enable_print', true );
         if(true == $docs_enable_print ) : ?>
-        <div class="ud-print"><span class="dashicons dashicons-printer"></span></div>
+        <div class="ultd--print"><span class="dashicons dashicons-printer"></span></div>
         <?php endif; ?>
         
-        <div class="ud-entry-content" itemprop="articleBody">
+        <div class="ultd--entry-content" itemprop="articleBody">
 
             <?php
                 the_content( sprintf(
@@ -27,30 +27,30 @@ ud_get_template_part( 'ultimate-doc', 'sidebar' );
             ?>
         </div>
 
-        <div class="ud-article-footer">
-            <div class="ud-meta-area">
-                <div class="ud-footer-meta">
+        <div class="ultd--article-footer">
+            <div class="ultd--meta-area">
+                <div class="ultd--footer-meta">
                     <?php printf('%s %s',
-                            esc_html__( 'Updated on ', 'ud'),
+                            esc_html__( 'Updated on ', 'ultimate-doc'),
                             get_the_modified_time('M d, Y'));
                         ?>
                 </div>
-                <?php printf('%s', ud_feedback_html()) ?>
+                <?php printf('%s', ultd__feedback_html()) ?>
             </div>
             <?php 
             $socialenable = get_theme_mod( 'switch_social_share', true );
             if ( true == $socialenable ) {
-                echo do_shortcode( '[ud_social_share]' );
+                echo do_shortcode( '[ultd__social_share]' );
             }    
             ?>
         </div>
 
-        <div class="ud-single-post-navigation">
-            <?php ud_post_navigation(get_the_ID(  ));?>
+        <div class="ultd--single-post-navigation">
+            <?php ultd__post_navigation(get_the_ID(  ));?>
         </div>
 
-        <div class="ud-related-articles">
-            <?php ud_related_article(wp_get_post_parent_id( get_the_ID() )) ?>
+        <div class="ultd--related-articles">
+            <?php ultd__related_article(wp_get_post_parent_id( get_the_ID() )) ?>
         </div>
 
         <?php 
@@ -59,21 +59,21 @@ ud_get_template_part( 'ultimate-doc', 'sidebar' );
             $supporturl = get_theme_mod( 'contact_url_page', 'http://example.com/' );
             $cta_text = get_theme_mod( 'cta_button_text', 'Contact support' );
         ?>
-        <div class="ud-ctn">
+        <div class="ultd--ctn">
             <div class="footer-area">
                 <div class="footer-content">
                     <h3><?php echo esc_html( $cta_title ) ?> </h3>
                     <p><?php echo esc_html( $cta_description ); ?></p>
                 </div>
-                <div class="footer-button ud-cta">
+                <div class="footer-button ultd--cta">
                     <?php printf('<a href="%s">%s</a>',esc_url_raw($supporturl), esc_html( $cta_text));
                     ?>
 
                 </div>
             </div>
         </div>
-        <div class="ud-powered">
-            <span class="ud-copyright">
+        <div class="ultd--powered">
+            <span class="ultd--copyright">
                 <?php printf('%s <a href="%s">%s</a>', 
                         esc_html( 'Powered by '),
                         esc_url( 'https://finestdevs.com' ),
@@ -83,7 +83,7 @@ ud_get_template_part( 'ultimate-doc', 'sidebar' );
 
         </div>
     </article><!-- #post-## -->
-    <div class="ud-autoc-wrap <?php echo $class; ?>">
+    <div class="ultd--autoc-wrap <?php echo esc_attr($class); ?>">
         <div class="autoc" data-stopat='h2' data-offset='1'></div>
     </div>
-</div><!-- .ud-single-content -->
+</div><!-- .ultd--single-content -->

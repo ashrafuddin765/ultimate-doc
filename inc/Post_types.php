@@ -22,7 +22,7 @@ class Post_Types {
 
 
     public function register_post_type() {
-        $slug = ud_get_option('docs_root_slug', 'docs');
+        $slug = ultd__get_option('docs_root_slug', 'docs');
         $labels = array(
             'name'               => _x( 'Docs', 'post type general name', 'ultimate-doc' ),
             'singular_name'      => _x( 'Docs', 'post type singular name', 'ultimate-doc' ),

@@ -1,6 +1,6 @@
 <?php
 
-function ud_docs_shortcode( $atts ) {
+function ultd__docs_shortcode( $atts ) {
     if ( empty( $atts ) ) {
         $atts = array();
     }
@@ -12,7 +12,7 @@ function ud_docs_shortcode( $atts ) {
     }
     return '<div class="autoc" data-stopat="' . $atts['stopat'] . '" data-offset="' . $atts['offset'] . '"></div>';
 }
-add_shortcode( 'ud-doc-toc', 'ud_docs_shortcode' );
+add_shortcode( 'ultd--doc-toc', 'ultd__docs_shortcode' );
 
 function fd_shortcode( $atts ) {
 
@@ -24,7 +24,7 @@ function fd_shortcode( $atts ) {
 
     $docs           = get_theme_mod( 'docs_template_design', 'docs-template-01' );
     $section        = get_theme_mod( 'section_select_template', 'section-template-01' );
-    $enable_masonry = ud_get_option( 'docs_enable_masonry', true ) ? 'ud-masonry' : '';
+    $enable_masonry = ultd__get_option( 'docs_enable_masonry', true ) ? 'ultd--masonry' : '';
 
     $args = array(
         'post_type'      => 'docs',
@@ -64,8 +64,8 @@ function fd_shortcode( $atts ) {
 
     ?>
 
-<div class="ud-site-main <?php echo esc_attr( $class ) ?>">
-    <div class="ud-container">
+<div class="ultd--site-main <?php echo esc_attr( $class ) ?>">
+    <div class="ultd--container">
         <div class="row <?php echo esc_attr( $enable_masonry ) ?>">
             <?php if ( $the_query->have_posts() ): ?>
             <?php while ( $the_query->have_posts() ): $the_query->the_post();
@@ -73,7 +73,7 @@ function fd_shortcode( $atts ) {
 
         if ( !empty( $id ) && 'section' == $docs_type ) {
             // here will be section template
-            $section_template = apply_filters( 'ud_include_section_template', UD_DIR . 'templates/section-template/' . $section . '.php' );
+            $section_template = apply_filters( 'ultd__include_section_template', ULTD_DIR . 'templates/section-template/' . $section . '.php' );
 
             if($section_template){
                 include $section_template;
@@ -81,7 +81,7 @@ function fd_shortcode( $atts ) {
 
         } elseif ( 'doc' == $docs_type ) {
 
-            $doc_template = apply_filters( 'ud_include_docs_template', UD_DIR . 'templates/docs-template/' . $docs . '.php' );
+            $doc_template = apply_filters( 'ultd__include_docs_template', ULTD_DIR . 'templates/docs-template/' . $docs . '.php' );
             // here will show all docs
             if($doc_template){
                 include $doc_template;
@@ -101,7 +101,7 @@ function fd_shortcode( $atts ) {
         </div>
         <?php
 //paginations
-    echo '<div class="ud-paginations-wrap">';
+    echo '<div class="ultd--paginations-wrap">';
     $big = 999999999; // need an unlikely integer
     echo paginate_links( array(
         'base'      => str_replace( $big, '%#%', get_pagenum_link( $big ) ),
@@ -118,16 +118,16 @@ function fd_shortcode( $atts ) {
 </div>
 <?Php
 }
-add_shortcode( 'ud', 'fd_shortcode' );
+add_shortcode( 'ultd', 'fd_shortcode' );
 
 /* Ud Search  */
-function ud_search_shortcode( $atts ) {
+function ultd__search_shortcode( $atts ) {
 
     extract( shortcode_atts( array(
         'id'    => '',
         'style' => '01',
     ), $atts ) );
-    $placeholder = ud_get_option( 'docs_search_placeholder', __( 'Search for articles...', 'placeholder', 'ud' ) );
+    $placeholder = ultd__get_option( 'docs_search_placeholder', __( 'Search for articles...', 'placeholder', 'ultimate-doc' ) );
     $search_icon = '<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M14.75 14.75L10.25 10.25M11.75 6.5C11.75 9.39949 9.39949 11.75 6.5 11.75C3.60051 11.75 1.25 9.39949 1.25 6.5C1.25 3.60051 3.60051 1.25 6.5 1.25C9.39949 1.25 11.75 3.60051 11.75 6.5Z" stroke="#161617" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
     </svg>
@@ -136,19 +136,19 @@ function ud_search_shortcode( $atts ) {
         'post_type'         => 'docs',
         'echo'              => 0,
         'depth'             => 1,
-        'show_option_none'  => __( 'All Docs', 'ud' ),
+        'show_option_none'  => __( 'All Docs', 'ultimate-doc' ),
         'option_none_value' => 'all',
         'name'              => 'search_in_doc',
     ];
 
     if ( isset( $_GET['search_in_doc'] ) && 'all' != $_GET['search_in_doc'] ) {
-        $dropdown_args['selected'] = (int) $_GET['search_in_doc'];
+        $dropdown_args['selected'] = (int) sanitize_text_field( $_GET['search_in_doc'] );
     }
 
-    $form = '<form role="search" method="get" class="search-form ud-search-form" action="' . esc_url( home_url( '/' ) ) . '">
-    <div class="ud-search-input">
-        <span class="screen-reader-text">' . _x( 'Search for:', 'label', 'ud' ) . '</span>
-        <input type="search" class="search-field" placeholder="' . $placeholder . '" value="' . get_search_query() . '" name="s" title="' . esc_attr_x( 'Search for:', 'label', 'ud' ) . '" />
+    $form = '<form role="search" method="get" class="search-form ultd--search-form" action="' . esc_url( home_url( '/' ) ) . '">
+    <div class="ultd--search-input">
+        <span class="screen-reader-text">' . _x( 'Search for:', 'label', 'ultimate-doc' ) . '</span>
+        <input type="search" class="search-field" placeholder="' . $placeholder . '" value="' . get_search_query() . '" name="s" title="' . esc_attr_x( 'Search for:', 'label', 'ultimate-doc' ) . '" />
         <input type="hidden" name="post_type" value="docs" />
         <input type="hidden" name="post_id" value="' . esc_html( $id ) . '" />
         <button class="search-submit" type="submit">' . $search_icon . '</button>
@@ -157,47 +157,47 @@ function ud_search_shortcode( $atts ) {
 </form>';
     return $form;
 }
-add_shortcode( 'ud_search', 'ud_search_shortcode' );
+add_shortcode( 'ultd__search', 'ultd__search_shortcode' );
 
 // socila share shortcode
-function ud_social_share() {
+function ultd__social_share() {
     $social_title = get_theme_mod( 'social_share_ttile', 'Share this article:' );
     $onfacebook   = get_theme_mod( 'switch_facebook_share', true );
     $ontwitter    = get_theme_mod( 'enable_Twitter_sharing', true );
     $onlinkdin    = get_theme_mod( 'enable_linkedin_sharing', true );
     $onpinterest  = get_theme_mod( 'enable_pinterest_sharing', true );
     ?>
-<div class="ud-social-share">
-    <div class="ud-socshare-heading">
+<div class="ultd--social-share">
+    <div class="ultd--socshare-heading">
         <?php echo '<strong>' . esc_html( $social_title ) . '</strong>'; ?>
     </div>
-    <ul class="ud-social-share-links">
+    <ul class="ultd--social-share-links">
         <?php if ( true == $onfacebook ): ?>
         <li><a href="https://www.facebook.com/sharer.php?u=<?php the_permalink();?>" target="_blank"><img
-                    src="<?php echo UD_ASSETS_ASSETS . 'facebook.svg' ?>" alt="Facebook"></a></li>
+                    src="<?php echo esc_attr(ULTD_ASSETS_ASSETS . 'facebook.svg') ?>" alt="Facebook"></a></li>
         <?php endif;?>
 
         <?php if ( true == $ontwitter ): ?>
         <li><a href="https://twitter.com/intent/tweet?url=<?php the_permalink();?>" target="_blank"><img
-                    src="<?php echo UD_ASSETS_ASSETS . 'twitter.svg' ?>" alt="Twitter"></a></li>
+                    src="<?php echo esc_attr(ULTD_ASSETS_ASSETS . 'twitter.svg') ?>" alt="Twitter"></a></li>
         <?php endif;?>
 
         <?php if ( true == $onlinkdin ): ?>
         <li><a href="https://www.linkedin.com/shareArticle?mini=true&url=<?php the_permalink();?>" target="_blank"><img
-                    src="<?php echo UD_ASSETS_ASSETS . 'linkedin.svg' ?>" alt="LinkedIn"></a></li>
+                    src="<?php echo esc_attr(ULTD_ASSETS_ASSETS . 'linkedin.svg') ?>" alt="LinkedIn"></a></li>
         <?php endif;?>
 
         <?php if ( true == $onpinterest ): ?>
         <li><a href="https://pinterest.com/pin/create/button/?url=<?php the_permalink();?>" target="_blank"><img
-                    src="<?php echo UD_ASSETS_ASSETS . 'pinterest.svg' ?>" alt="Pinterest"></a></li>
+                    src="<?php echo esc_attr(ULTD_ASSETS_ASSETS . 'pinterest.svg') ?>" alt="Pinterest"></a></li>
         <?php endif;?>
     </ul>
 </div>
 <?php }
 
-add_shortcode( 'ud_social_share', 'ud_social_share' );
+add_shortcode( 'ultd__social_share', 'ultd__social_share' );
 
-function ud_instant_answer( $atts ) {
+function ultd__instant_answer( $atts ) {
 
     extract( shortcode_atts( array(
         'per_page' => 10,
@@ -219,19 +219,19 @@ function ud_instant_answer( $atts ) {
         ),
     );
 
-    $ia_show_all_doc        = ud_get_option( 'ia_show_all_doc', 'on' );
-    $ia_select_doc          = ud_get_option( 'ia_select_doc', [] );
-    $ia_name_placeholder    = ud_get_option( 'ia_name_placeholder', 'Name' );
-    $ia_email_placeholder   = ud_get_option( 'ia_email_placeholder', 'Email' );
-    $ia_subject_placeholder = ud_get_option( 'ia_subject_placeholder', 'Subject' );
-    $ia_message_placeholder = ud_get_option( 'ia_message_placeholder', 'How we can help?' );
-    $select_ia_position     = ud_get_option( 'select_ia_position', 'right' );
-    $ia_doc_show_type       = ud_get_option( 'ia_doc_show_type', 'normal' );
+    $ia_show_all_doc        = ultd__get_option( 'ia_show_all_doc', 'on' );
+    $ia_select_doc          = ultd__get_option( 'ia_select_doc', [] );
+    $ia_name_placeholder    = ultd__get_option( 'ia_name_placeholder', 'Name' );
+    $ia_email_placeholder   = ultd__get_option( 'ia_email_placeholder', 'Email' );
+    $ia_subject_placeholder = ultd__get_option( 'ia_subject_placeholder', 'Subject' );
+    $ia_message_placeholder = ultd__get_option( 'ia_message_placeholder', 'How we can help?' );
+    $select_ia_position     = ultd__get_option( 'select_ia_position', 'right' );
+    $ia_doc_show_type       = ultd__get_option( 'ia_doc_show_type', 'normal' );
 
     ?>
-<div class="ud-ia-wrapper ia-position-<?php echo esc_attr( $select_ia_position ) ?>">
-    <div class="ud-ia-toggler">
-        <div class="ud-ia-open active">
+<div class="ultd--ia-wrapper ia-position-<?php echo esc_attr( $select_ia_position ) ?>">
+    <div class="ultd--ia-toggler">
+        <div class="ultd--ia-open active">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
                     d="M19 20H5C3.89543 20 3 19.1046 3 18L3 6C3 4.89543 3.89543 4 5 4L15 4C16.1046 4 17 4.89543 17 6V7M19 20C17.8954 20 17 19.1046 17 18L17 7M19 20C20.1046 20 21 19.1046 21 18V9C21 7.89543 20.1046 7 19 7L17 7M13 4L9 4M7 16H13M7 8H13V12H7V8Z"
@@ -240,7 +240,7 @@ function ud_instant_answer( $atts ) {
 
             <span><?php esc_html_e( 'Read Doc', 'ultimate-doc' )?></span>
         </div>
-        <div class="ud-ia-close">
+        <div class="ultd--ia-close">
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M1 13L13 1M1 1L13 13" stroke="white" stroke-width="1.5" stroke-linecap="round"
                     stroke-linejoin="round" />
@@ -248,21 +248,21 @@ function ud_instant_answer( $atts ) {
             <span><?php esc_html_e( 'Close Doc', 'ultimate-doc' )?></span>
         </div>
     </div>
-    <div class="ud-ia-main" id="ud-ia">
-        <ul id="tabs" class="ud-setting-tabs-menu">
-            <li><button class="ud-tab-link active" onclick="udTabs(event,'ud-ia-answer' ); ">Answer</button>
+    <div class="ultd--ia-main" id="ultd--ia">
+        <ul id="tabs" class="ultd--setting-tabs-menu">
+            <li><button class="ultd--tab-link active" onclick="udTabs(event,'ultd--ia-answer' ); ">Answer</button>
             </li>
-            <li><button class="ud-tab-link" onclick="udTabs(event, 'ud-ia-chat')">chat</button>
+            <li><button class="ultd--tab-link" onclick="udTabs(event, 'ultd--ia-chat')">chat</button>
             </li>
         </ul>
 
-        <div id="ud-ia-answer" class="ud-tab-content" style="display: block;">
+        <div id="ultd--ia-answer" class="ultd--tab-content" style="display: block;">
             <p>
                 <?php esc_html_e( 'Learn more about this product here! Popular articles are listed below. You can also contact us if you don’t find the article.', 'ultimate-doc' )?>
             </p>
-            <div class="ud-ia-search-form">
-                <form role="search" method="get" v-on:submit.prevent class="search-form ud-search-form" action="">
-                    <div class="ud-search-input">
+            <div class="ultd--ia-search-form">
+                <form role="search" method="get" v-on:submit.prevent class="search-form ultd--search-form" action="">
+                    <div class="ultd--search-input">
                         <span class="screen-reader-text"></span>
                         <input v-model="doc_search" type="search" class="search-field" placeholder="" value=""
                             name="doc_search"
@@ -282,7 +282,7 @@ function ud_instant_answer( $atts ) {
                             stroke="#111827" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
 
-                    <h3 v-on:click="showArticle($event, article)" v-html="article.post.title" class="ud-title">
+                    <h3 v-on:click="showArticle($event, article)" v-html="article.post.title" class="ultd--title">
                         {{ article.post.title }}
                     </h3>
                     <div class="full-article">
@@ -296,7 +296,7 @@ function ud_instant_answer( $atts ) {
                             </svg>
                             <?php esc_html_e( 'Back to all articles', 'ultimate-doc' )?>
                         </span>
-                        <div class="ud-entry-content">
+                        <div class="ultd--entry-content">
 
                         </div>
                     </div>
@@ -332,8 +332,8 @@ function ud_instant_answer( $atts ) {
                             <?php esc_html_e( 'Learn more about this product here! Popular articles are listed below. You can also contact us if you don’t find the article.', 'ultimate-doc' )?>
                         </p>
                         <form role="search" method="get" v-on:submit.prevent="searchArticle"
-                            class="search-form ud-search-form" action="">
-                            <div class="ud-search-input">
+                            class="search-form ultd--search-form" action="">
+                            <div class="ultd--search-input">
                                 <span class="screen-reader-text"></span>
                                 <input v-model="article_search" type="search" class="search-field" placeholder=""
                                     value="" name="article_search" title="" />
@@ -354,7 +354,7 @@ function ud_instant_answer( $atts ) {
                                     </svg>
 
                                     <h3 v-on:click="showArticle($event, article)" v-html="article.post.title"
-                                        class="ud-title">
+                                        class="ultd--title">
                                         {{ section.post.title }}
                                     </h3>
                                     <div class="full-article">
@@ -368,9 +368,9 @@ function ud_instant_answer( $atts ) {
                                             </svg>
                                             <?php esc_html_e( 'Back to all articles', 'ultimate-doc' )?>
                                         </span>
-                                        <div class="ud-entry-content">
+                                        <div class="ultd--entry-content">
                                             <h3 v-on:click="showArticle($event, article)" v-html="article.post.title"
-                                                class="ud-title">
+                                                class="ultd--title">
                                                 {{ section.post.title }}
                                             </h3>
                                         </div>
@@ -385,34 +385,34 @@ function ud_instant_answer( $atts ) {
             <?php endif;?>
 
         </div>
-        <div id="ud-ia-chat" class="ud-tab-content">
-            <form action="" method="POST" class="ud-ia-chat-form" v-on:submit.prevent="sendMail">
-                <div class="ud-ia-form-field">
+        <div id="ultd--ia-chat" class="ultd--tab-content">
+            <form action="" method="POST" class="ultd--ia-chat-form" v-on:submit.prevent="sendMail">
+                <div class="ultd--ia-form-field">
                     <label for="name">Name</label>
                     <input type="text" v-model="name" name="name"
                         placeholder="<?php echo esc_html( $ia_name_placeholder ) ?>">
                 </div>
-                <div class="ud-ia-form-field">
+                <div class="ultd--ia-form-field">
                     <label for="email">Email</label>
                     <input type="email" name="email" v-model="email"
                         placeholder="<?php echo esc_html( $ia_email_placeholder ) ?>">
                 </div>
-                <div class="ud-ia-form-field">
+                <div class="ultd--ia-form-field">
                     <label for="subject">Subject</label>
                     <input type="text" name="subject" v-model="subject"
                         placeholder="<?php echo esc_html( $ia_subject_placeholder ) ?>">
                 </div>
-                <div class="ud-ia-form-field">
+                <div class="ultd--ia-form-field">
                     <label for="message">Message</label>
                     <textarea name="message" v-model="message" id="message"
                         placeholder="<?php echo esc_html( $ia_message_placeholder ) ?>" cols="30" rows="10"></textarea>
                 </div>
-                <div class="ud-ia-action">
+                <div class="ultd--ia-action">
                     <button type="submit">Send</button>
                 </div>
             </form>
         </div>
-        <div class="ud-ia-copyright-text">
+        <div class="ultd--ia-copyright-text">
             <p> <?php esc_html_e( 'Proudly using', 'ultimatedoc' )?> <a href="https://www.finestdevs.com"
                     target="_blank"><?php esc_html_e( 'UltimateDoc', 'ultimate-doc' )?></a></p>
         </div>
@@ -421,6 +421,6 @@ function ud_instant_answer( $atts ) {
 
 <?Php
 }
-add_shortcode( 'ud_ia', 'ud_instant_answer' );
+add_shortcode( 'ultd__ia', 'ultd__instant_answer' );
 
 ?>

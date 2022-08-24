@@ -187,7 +187,7 @@ class Client {
      * @return boolean
      */
     public function is_local_server() {
-        return in_array( $_SERVER['REMOTE_ADDR'], array( '127.0.0.1', '::1' ) );
+        return in_array( sanitize_text_field( $_SERVER['REMOTE_ADDR'] ), array( '127.0.0.1', '::1' ) );
     }
 
     /**

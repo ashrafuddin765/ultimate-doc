@@ -1,11 +1,11 @@
 <?php
-Kirki::add_section( 'docs_serach', array(
+new \Kirki\Section( 'docs_serach', array(
 	'title'          => esc_html__( 'Search', 'ultimate-doc' ),
-	'panel'          => 'ud_panel',
+	'panel'          => 'ultd__panel',
 	'priority'       => 160,
 ) );
 
-Kirki::add_field( 'ud_panel', [
+Kirki::add_field( 'ultd__panel', [
 	'type'        => 'slider',
 	'settings'    => 'search_width',
 	'label'       => esc_html__( 'Search Width', 'ultimate-doc' ),
@@ -19,7 +19,7 @@ Kirki::add_field( 'ud_panel', [
 	'transport' => 'postMessage',
 	'js_vars'   => [
 		[
-			'element'  => 'form.search-form.ud-search-form input.search-field',
+			'element'  => 'form.search-form.ultd--search-form input.search-field',
 			'function' => 'css',
 			'property' => 'width',
 			'units'    => '%',
@@ -27,7 +27,7 @@ Kirki::add_field( 'ud_panel', [
 	],
 ] );
 
-Kirki::add_field( 'ud_panel', [
+Kirki::add_field( 'ultd__panel', [
 	'type'        => 'slider',
 	'settings'    => 'search_height',
 	'label'       => esc_html__( 'Search Height', 'ultimate-doc' ),
@@ -41,7 +41,7 @@ Kirki::add_field( 'ud_panel', [
 	'transport' => 'postMessage',
 	'js_vars'   => [
 		[
-			'element'  => 'form.search-form.ud-search-form input.search-field',
+			'element'  => 'form.search-form.ultd--search-form input.search-field',
 			'function' => 'css',
 			'property' => 'height',
 			'units'    => 'px',
@@ -49,7 +49,7 @@ Kirki::add_field( 'ud_panel', [
 	],
 ] );
 
-Kirki::add_field( 'ud_panel', [
+Kirki::add_field( 'ultd__panel', [
 	'type'        => 'color',
 	'settings'    => 'search_filed_color',
 	'label'       => __( 'Search Text Color', 'ultimate-doc' ),
@@ -61,7 +61,7 @@ Kirki::add_field( 'ud_panel', [
 	'transport' => 'postMessage',
 	'js_vars'   => [
 		[
-			'element'  => 'form.search-form.ud-search-form input.search-field',
+			'element'  => 'form.search-form.ultd--search-form input.search-field',
 			'function' => 'css',
 			'property' => 'color',
 			
@@ -69,7 +69,7 @@ Kirki::add_field( 'ud_panel', [
 	],
 ] );
 
-Kirki::add_field( 'ud_panel', [
+Kirki::add_field( 'ultd__panel', [
 	'type'        => 'slider',
 	'settings'    => 'search_field_size',
 	'label'       => esc_html__( 'Search Field Font size', 'ultimate-doc' ),
@@ -83,7 +83,7 @@ Kirki::add_field( 'ud_panel', [
 	'transport' => 'postMessage',
 	'js_vars'   => [
 		[
-			'element'  => 'form.search-form.ud-search-form input.search-field',
+			'element'  => 'form.search-form.ultd--search-form input.search-field',
 			'function' => 'css',
 			'property' => 'font-size',
 			'units'    => 'px',
@@ -91,7 +91,7 @@ Kirki::add_field( 'ud_panel', [
 	],
 ] );
 
-Kirki::add_field( 'ud_panel', [
+Kirki::add_field( 'ultd__panel', [
 	'type'        => 'color',
 	'settings'    => 'search_bag_color',
 	'label'       => __( 'Background Color', 'ultimate-doc' ),
@@ -103,7 +103,7 @@ Kirki::add_field( 'ud_panel', [
 	'transport' => 'postMessage',
 	'js_vars'   => [
 		[
-			'element'  => 'form.search-form.ud-search-form input.search-field',
+			'element'  => 'form.search-form.ultd--search-form input.search-field',
 			'function' => 'css',
 			'property' => 'background-color',
 			
@@ -111,7 +111,7 @@ Kirki::add_field( 'ud_panel', [
 	],
 ] );
 
-Kirki::add_field( 'ud_panel', array(
+Kirki::add_field( 'ultd__panel', array(
 	'type'        => 'dimensions',
 	'settings'    => 'search_border_setting',
 	'label'       => esc_attr__( 'Search Border Width', 'textdomain' ),
@@ -132,7 +132,7 @@ Kirki::add_field( 'ud_panel', array(
 
 // border type
 
-Kirki::add_field( 'ud_panel', [
+Kirki::add_field( 'ultd__panel', [
 	'type'        => 'select',
 	'settings'    => 'search_border_type',
 	'label'       => esc_html__( 'Border Type', 'kirki' ),
@@ -157,7 +157,7 @@ Kirki::add_field( 'ud_panel', [
     'transport' => 'postMessage',
 	'js_vars'   => [
 		[
-			'element'  => 'form.search-form.ud-search-form input.search-field',
+			'element'  => 'form.search-form.ultd--search-form input.search-field',
 			'function' => 'css',
 			'property' => 'border-style',
 		],
@@ -167,7 +167,7 @@ Kirki::add_field( 'ud_panel', [
 
 // border-color
 
-Kirki::add_field( 'ud_panel', [
+Kirki::add_field( 'ultd__panel', [
 	'type'        => 'color',
 	'settings'    => 'search_border_color',
 	'label'       => __( 'Border Color', 'ultimate-doc' ),
@@ -179,7 +179,7 @@ Kirki::add_field( 'ud_panel', [
 	'transport' => 'postMessage',
 	'js_vars'   => [
 		[
-			'element'  => 'form.search-form.ud-search-form input.search-field',
+			'element'  => 'form.search-form.ultd--search-form input.search-field',
 			'function' => 'css',
 			'property' => 'border-color',
 		],
@@ -187,7 +187,7 @@ Kirki::add_field( 'ud_panel', [
     
 ] );
 
-Kirki::add_field( 'ud_panel', [
+Kirki::add_field( 'ultd__panel', [
 	'type'        => 'slider',
 	'settings'    => 'search_text_padding',
 	'label'       => esc_html__( 'Padding left', 'ultimate-doc' ),
@@ -201,7 +201,7 @@ Kirki::add_field( 'ud_panel', [
 	'transport' => 'postMessage',
 	'js_vars'   => [
 		[
-			'element'  => 'form.search-form.ud-search-form input.search-field',
+			'element'  => 'form.search-form.ultd--search-form input.search-field',
 			'function' => 'css',
 			'property' => 'padding-left',
 			'units'    => 'px',
@@ -209,7 +209,7 @@ Kirki::add_field( 'ud_panel', [
 	],
 ] );
 
-Kirki::add_field( 'ud_panel', [
+Kirki::add_field( 'ultd__panel', [
 	'type'        => 'slider',
 	'settings'    => 'search_border_radius',
 	'label'       => esc_html__( 'Border Radius', 'ultimate-doc' ),
@@ -223,7 +223,7 @@ Kirki::add_field( 'ud_panel', [
 	'transport' => 'postMessage',
 	'js_vars'   => [
 		[
-			'element'  => 'form.search-form.ud-search-form input.search-field',
+			'element'  => 'form.search-form.ultd--search-form input.search-field',
 			'function' => 'css',
 			'property' => 'border-radius',
 			'units'    => 'px',

@@ -18,7 +18,7 @@
 ?>
 <div class="docsectin-main">
     <div class="section-bg <?php echo esc_attr($secttiontemplate) ?>" >
-        <div class="ud-container">
+        <div class="ultd--container">
             <div class="row">
                 <div class="<?php echo esc_attr( $gridclass ); ?>">
                     <div class="section-header" >
@@ -29,14 +29,14 @@
                             <p><?php echo esc_html( $section_description ); ?></p>
                         </div>
                         <div class="section-search" >
-                            <?php echo do_shortcode( '[ud_search id='.get_the_ID().']' ); ?>
+                            <?php echo do_shortcode( '[ultd__search id='.get_the_ID().']' ); ?>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <?php echo do_shortcode( '[ud id='.get_the_ID().']' );?>
+    <?php echo do_shortcode( '[ultd id='.get_the_ID().']' );?>
 </div>
 
 <?php get_footer(); ?>

@@ -6,8 +6,8 @@
  * Retrieving the values:
  * Upload Doc Icon = get_post_meta( get_the_ID(), 'fd_doc_icon', true )
  */
-class UD_Metabox {
-	private $config = '{"title":"Finest Metabox","prefix":"ud_metabox_","domain":"ud-metabox","class_name":"UD_Metabox","context":"normal","priority":"default","cpt":"docs","fields":[{"type":"media","label":"Upload Doc Icon","button-text":"Upload icon","return":"url","id":"fd_doc_icon"}]}';
+class ULTD_Metabox {
+	private $config = '{"title":"Finest Metabox","prefix":"ultd__metabox_","domain":"ultd--metabox","class_name":"ULTD_Metabox","context":"normal","priority":"default","cpt":"docs","fields":[{"type":"media","label":"Upload Doc Icon","button-text":"Upload icon","return":"url","id":"fd_doc_icon"}]}';
 
 	public function __construct() {
 		$this->config = json_decode( $this->config, true );
@@ -153,11 +153,11 @@ class UD_Metabox {
 	private function media_button( $field ) {
 		printf(
 			' <button class="button rwp-media-toggle" data-modal-button="%s" data-modal-title="%s" data-return="%s" id="%s_button" name="%s_button" type="button">%s</button>',
-			isset( $field['modal-button'] ) ? $field['modal-button'] : __( 'Select this file', 'ud-metabox' ),
-			isset( $field['modal-title'] ) ? $field['modal-title'] : __( 'Choose a file', 'ud-metabox' ),
+			isset( $field['modal-button'] ) ? $field['modal-button'] : __( 'Select this file', 'ultd--metabox' ),
+			isset( $field['modal-title'] ) ? $field['modal-title'] : __( 'Choose a file', 'ultd--metabox' ),
 			$field['return'],
 			$field['id'], $field['id'],
-			isset( $field['button-text'] ) ? $field['button-text'] : __( 'Upload', 'ud-metabox' )
+			isset( $field['button-text'] ) ? $field['button-text'] : __( 'Upload', 'ultd--metabox' )
 		);
 	}
 
@@ -174,4 +174,4 @@ class UD_Metabox {
 	}
 
 }
-new UD_Metabox;
+new ULTD_Metabox;

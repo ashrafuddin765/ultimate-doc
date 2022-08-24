@@ -349,7 +349,7 @@ if ( !class_exists( 'UltimateDoc\License' ) ) {
         // create custom plugin settings menu
         function create_license_menu( $parent_menu = '' ) {
             if ( !empty( $parent_menu ) ) {
-                add_submenu_page( $parent_menu, __( 'Finest License', 'ud-mini-cart-pro' ), __( 'Finest License', 'ud-mini-cart-pro' ), 'manage_options', 'ud-license', [$this, 'license_settings_page'] );
+                add_submenu_page( $parent_menu, __( 'Finest License', ultimate-doc-pro' ), __( 'Finest License', ultimate-doc-pro' ), 'manage_options', 'ultd--license', [$this, 'license_settings_page'] );
             } else {
                 // create new top-level menu
                 // add_menu_page( $this->plugin_name, 'Finest License', 'administrator', __FILE__, [$this, 'license_settings_page'] );
@@ -361,14 +361,14 @@ if ( !class_exists( 'UltimateDoc\License' ) ) {
             $license = isset( $this->valid_status['license_key'] ) ? $this->valid_status['license_key'] : '';
 
             if ( isset( $_POST['activate'] ) && isset( $_POST[$this->valid_object] ) ) {
-                $license = trim( $_POST[$this->valid_object] );
+                $license = trim( sanitize_text_field( $_POST[$this->valid_object] ) );
                 $this->activate( $license );
 
             }
 
             if ( isset( $_POST['deactivate'] ) && isset( $_POST[$this->valid_object] ) ) {
 
-                $license = trim( $_POST[$this->valid_object] );
+                $license = trim( sanitize_text_field( $_POST[$this->valid_object] ) );
                 $this->deactivate( $license );
                 $license = '';
             }
@@ -376,18 +376,18 @@ if ( !class_exists( 'UltimateDoc\License' ) ) {
             ?>
             <div class="wrap">
 
-            <h1><?php esc_html_e( $this->plugin_name, 'ud-mini-cart-pro' )?></h1>
+            <h1><?php esc_html_e( $this->plugin_name, ultimate-doc-pro' )?></h1>
             <?php if ( $this->is_activated() ): ?>
                 <strong style='color:green'><?php echo esc_html_e( 'License Activated', $this->plugin_name ) ?></strong>
                 <?php else: ?>
                     <strong style='color:red'><?php esc_html_e( $this->validate_status( $license )['error'], $this->plugin_name )?></strong>
             <?php endif;?>
             <form method="post" action="">
-                    <input type="text" name="<?php echo $this->valid_object ?>" value="<?php echo esc_attr( $license ); ?>" required />
+                    <input type="text" name="<?php echo esc_attr( $this->valid_object ) ?>" value="<?php echo esc_attr( $license ); ?>" required />
                     <?php if ( !$this->is_activated() ): ?>
-                    <button type="submit" name="activate"><?php esc_html_e( 'Activate', 'ud-mini-cart-pro' )?></button>
+                    <button type="submit" name="activate"><?php esc_html_e( 'Activate', ultimate-doc-pro' )?></button>
                     <?php else: ?>
-                    <button type="submit" name="deactivate"><?php esc_html_e( 'Deactivate', 'ud-mini-cart-pro' )?></button>
+                    <button type="submit" name="deactivate"><?php esc_html_e( 'Deactivate', ultimate-doc-pro' )?></button>
                     <?php endif;?>
 
             </form>

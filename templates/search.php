@@ -1,27 +1,27 @@
 <?php
 get_header();
 
-$section_id = isset( $_GET['post_id'] ) ? intval( $_GET['post_id'] ) : 0;
+$section_id = isset( $_GET['post_id'] ) ? intval( sanitize_text_field($_GET['post_id']) ) : 0;
 $class      = '';?>
-<div class="ud-search-page">
-    <div class="ud-search-bar">
-        <div class="ud-container">
+<div class="ultd--search-page">
+    <div class="ultd--search-bar">
+        <div class="ultd--container">
             <div class="fddox-search-title">
-                <h2><?php esc_html_e( 'Search for articles', 'ud' )?></h2>
-                <p><?php esc_html_e( 'You can search for a question here. It will help you get the most common anwers easily.', 'ud' )?>
+                <h2><?php esc_html_e( 'Search for articles', 'ultimate-doc' )?></h2>
+                <p><?php esc_html_e( 'You can search for a question here. It will help you get the most common anwers easily.', 'ultimate-doc' )?>
                 </p>
             </div>
 
-            <div class="ud-search-wrap">
-                <?php printf( do_shortcode( '[ud_search id=' . $section_id . ']' ) )?>
+            <div class="ultd--search-wrap">
+                <?php printf( do_shortcode( '[ultd__search id=' . $section_id . ']' ) )?>
             </div>
         </div>
     </div>
 
-    <div class="ud-search-results">
+    <div class="ultd--search-results">
 
-        <div class="ud-container">
-            <div class="ud-search-restult-title">
+        <div class="ultd--container">
+            <div class="ultd--search-restult-title">
                 <?php
 printf(
     /* translators: %s: Search term. */
@@ -31,7 +31,7 @@ printf(
 );
 ?>
             </div>
-            <div class="ud-result-single-wrap">
+            <div class="ultd--result-single-wrap">
                 <?php if ( have_posts() ):
     $found_post = 0;
     while ( have_posts() ):
@@ -43,8 +43,8 @@ printf(
         ob_start();
         ?>
 
-                <div class="ud-single-search-item ud-single-content">
-                    <ul class="ud-breadcrumb" itemscope="">
+                <div class="ultd--single-search-item ultd--single-content">
+                    <ul class="ultd--breadcrumb" itemscope="">
                         <li itemprop="itemListElement" itemscope="">
                             <a itemprop="item" href="<?php the_permalink( $second_parent )?>">
                                 <span
@@ -72,7 +72,7 @@ printf(
     ?>
                 <?php
 endwhile;
-echo '<div class="ud-paginations-wrap">';
+echo '<div class="ultd--paginations-wrap">';
 echo paginate_links( [
     'next_text' => '>',
     'prev_text' => '<',
@@ -81,13 +81,13 @@ echo '</div>';
 
 else:
 
-    printf( '<h4>%s</h4>', esc_html( ud_get_option( 'docs_search_not_found_text', __( 'Sorry nothing matched!', 'ultimatedoc' ) ) ) );
+    printf( '<h4>%s</h4>', esc_html( ultd__get_option( 'docs_search_not_found_text', __( 'Sorry nothing matched!', 'ultimatedoc' ) ) ) );
 
 endif;
 
 ?>
 
-            </div><!-- .ud-single-wrap -->
+            </div><!-- .ultd--single-wrap -->
         </div>
     </div>
 

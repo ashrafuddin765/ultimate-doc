@@ -9,13 +9,13 @@ class Ajax {
      * Bind actions.
      */
     public function __construct() {
-        add_action( 'wp_ajax_ud_create_doc', [$this, 'create_doc'] );
-        add_action( 'wp_ajax_ud_quick_edit', [$this, 'quick_edit'] );
-        add_action( 'wp_ajax_ud_save_include_exclude', [$this, 'include_exclude_rules'] );
-        add_action( 'wp_ajax_ud_duplicate_doc', [$this, 'duplicate_doc'] );
-        add_action( 'wp_ajax_ud_remove_doc', [$this, 'remove_doc'] );
-        add_action( 'wp_ajax_ud_admin_get_docs', [$this, 'get_docs'] );
-        add_action( 'wp_ajax_ud_sortable_docs', [$this, 'sort_docs'] );
+        add_action( 'wp_ajax_ultd__create_doc', [$this, 'create_doc'] );
+        add_action( 'wp_ajax_ultd__quick_edit', [$this, 'quick_edit'] );
+        add_action( 'wp_ajax_ultd__save_include_exclude', [$this, 'include_exclude_rules'] );
+        add_action( 'wp_ajax_ultd__duplicate_doc', [$this, 'duplicate_doc'] );
+        add_action( 'wp_ajax_ultd__remove_doc', [$this, 'remove_doc'] );
+        add_action( 'wp_ajax_ultd__admin_get_docs', [$this, 'get_docs'] );
+        add_action( 'wp_ajax_ultd__sortable_docs', [$this, 'sort_docs'] );
     }
 
     /**
@@ -24,12 +24,12 @@ class Ajax {
      * @return void
      */
     public function create_doc() {
-        check_ajax_referer( 'ud-admin-nonce' );
+        check_ajax_referer( 'ultd--admin-nonce' );
 
         $title  = isset( $_POST['title'] ) ? trim( sanitize_text_field( $_POST['title'] ) ) : '';
         $status = isset( $_POST['status'] ) ? sanitize_text_field( $_POST['status'] ) : 'draft';
-        $parent = isset( $_POST['parent'] ) ? absint( $_POST['parent'] ) : 0;
-        $order  = isset( $_POST['order'] ) ? absint( $_POST['order'] ) : 0;
+        $parent = isset( $_POST['parent'] ) ? absint( sanitize_text_field( $_POST['parent'] ) ) : 0;
+        $order  = isset( $_POST['order'] ) ? absint( sanitize_text_field( $_POST['order'] ) ) : 0;
 
         $status           = 'publish';
         $post_type_object = get_post_type_object( 'docs' );
@@ -87,11 +87,11 @@ class Ajax {
      * @return void
      */
     public function quick_edit() {
-        check_ajax_referer( 'ud-admin-nonce' );
+        check_ajax_referer( 'ultd--admin-nonce' );
 
         $title   = isset( $_POST['title'] ) ? trim( sanitize_text_field( $_POST['title'] ) ) : '';
         $slug    = isset( $_POST['slug'] ) ? sanitize_text_field( $_POST['slug'] ) : 'draft';
-        $post_id = isset( $_POST['post_id'] ) ? absint( $_POST['post_id'] ) : 0;
+        $post_id = isset( $_POST['post_id'] ) ? absint( sanitize_text_field( $_POST['post_id'] ) ) : 0;
 
         $post_type_object = get_post_type_object( 'docs' );
 
@@ -123,11 +123,11 @@ class Ajax {
      * @return void
      */
     public function include_exclude_rules() {
-        check_ajax_referer( 'ud-admin-nonce' );
+        check_ajax_referer( 'ultd--admin-nonce' );
 
-        $include_ids = isset( $_POST['include_ids'] ) ? $_POST['include_ids'] : [];
-        $exclude_ids = isset( $_POST['exclude_ids'] ) ? $_POST['exclude_ids'] : [];
-        $post_id     = isset( $_POST['post_id'] ) ? absint( $_POST['post_id'] ) : 0;
+        $include_ids = isset( $_POST['include_ids'] ) ? sanitize_text_field( $_POST['include_ids'] ) : [];
+        $exclude_ids = isset( $_POST['exclude_ids'] ) ? sanitize_text_field( $_POST['exclude_ids'] ) : [];
+        $post_id     = isset( $_POST['post_id'] ) ? absint( sanitize_text_field( $_POST['post_id'] ) ) : 0;
 
         $post_type_object = get_post_type_object( 'docs' );
 
@@ -146,23 +146,22 @@ class Ajax {
         //     'post_type'   => 'docs',
         // ] );
 
-        
         $argc = [
             'post_type'      => 'page',
             'posts_per_page' => -1,
         ];
-        
+
         $update_include_rules = update_post_meta( $post_id, 'ia_include_pages', $include_ids );
         $update_exclude_rules = update_post_meta( $post_id, 'ia_exclude_pages', $exclude_ids );
-        
+
         if ( is_wp_error( $update_include_rules ) || is_wp_error( $update_exclude_rules ) ) {
             wp_send_json_error();
         }
         $include_slected_ids = get_post_meta( $post_id, 'ia_include_pages', false ) ? get_post_meta( $post_id, 'ia_include_pages', false ) : [];
         $exclude_slected_ids = get_post_meta( $post_id, 'ia_exclude_pages', false ) ? get_post_meta( $post_id, 'ia_exclude_pages', false ) : [];
 
-        $include_pages = ud_post_select( $argc, 'include_pages_' . $post_id . '[]', $include_slected_ids[0], 'multiple', false );
-        $exclude_pages = ud_post_select( $argc, 'exclude_pages_' . $post_id . '[]', $exclude_slected_ids[0], 'multiple', false );
+        $include_pages = ultd__post_select( $argc, 'include_pages_' . $post_id . '[]', $include_slected_ids[0], 'multiple', false );
+        $exclude_pages = ultd__post_select( $argc, 'exclude_pages_' . $post_id . '[]', $exclude_slected_ids[0], 'multiple', false );
 
         wp_send_json_success( [
             'include_pages' => $include_pages,
@@ -177,9 +176,9 @@ class Ajax {
      * @return void
      */
     public function duplicate_doc() {
-        check_ajax_referer( 'ud-admin-nonce' );
+        check_ajax_referer( 'ultd--admin-nonce' );
         $childs           = [];
-        $post_id          = isset( $_POST['post_id'] ) ? absint( $_POST['post_id'] ) : 0;
+        $post_id          = isset( $_POST['post_id'] ) ? absint( sanitize_text_field( $_POST['post_id'] ) ) : 0;
         $post_type_object = get_post_type_object( 'docs' );
 
         if ( '' === $post_id ) {
@@ -201,10 +200,10 @@ class Ajax {
      * @return void
      */
     public function remove_doc() {
-        check_ajax_referer( 'ud-admin-nonce' );
+        check_ajax_referer( 'ultd--admin-nonce' );
 
         $force_delete = false;
-        $post_id      = isset( $_POST['id'] ) ? absint( $_POST['id'] ) : 0;
+        $post_id      = isset( $_POST['id'] ) ? absint( sanitize_text_field( $_POST['id'] ) ) : 0;
 
         if ( !current_user_can( 'delete_post', $post_id ) ) {
             wp_send_json_error( __( 'You are not allowed to delete this item.' ) );
@@ -247,7 +246,7 @@ class Ajax {
      * @return void
      */
     public function get_docs() {
-        check_ajax_referer( 'ud-admin-nonce' );
+        check_ajax_referer( 'ultd--admin-nonce' );
 
         $docs = get_pages( [
             'post_type'      => 'docs',
@@ -268,9 +267,9 @@ class Ajax {
      * @return void
      */
     public function sort_docs() {
-        check_ajax_referer( 'ud-admin-nonce' );
+        check_ajax_referer( 'ultd--admin-nonce' );
 
-        $doc_ids = isset( $_POST['ids'] ) ? array_map( 'absint', $_POST['ids'] ) : [];
+        $doc_ids = isset( $_POST['ids'] ) ? array_map( 'absint', sanitize_text_field( $_POST['ids'] ) ) : [];
 
         if ( $doc_ids ) {
             foreach ( $doc_ids as $order => $id ) {
@@ -317,21 +316,21 @@ class Ajax {
                 $include_slected_ids = get_post_meta( $doc->ID, 'ia_include_pages', false ) ? get_post_meta( $doc->ID, 'ia_include_pages', false )[0] : [];
                 $exclude_slected_ids = get_post_meta( $doc->ID, 'ia_exclude_pages', false ) ? get_post_meta( $doc->ID, 'ia_exclude_pages', false )[0] : [];
 
-                $include_pages = ud_post_select( $argc, 'include_pages_' . $doc->ID . '[]', $include_slected_ids, 'multiple', false );
-                $exclude_pages = ud_post_select( $argc, 'exclude_pages_' . $doc->ID . '[]', $exclude_slected_ids, 'multiple', false );
+                $include_pages = ultd__post_select( $argc, 'include_pages_' . $doc->ID . '[]', $include_slected_ids, 'multiple', false );
+                $exclude_pages = ultd__post_select( $argc, 'exclude_pages_' . $doc->ID . '[]', $exclude_slected_ids, 'multiple', false );
 
                 $result[] = [
                     'post'  => [
-                        'id'            => $doc->ID,
-                        'title'         => $doc->post_title,
-                        'status'        => $doc->post_status,
-                        'order'         => $doc->menu_order,
-                        'slug'          => $doc->post_name,
-                        'include_pages' => $include_pages,
-                        'exclude_pages' => $exclude_pages,
+                        'id'              => $doc->ID,
+                        'title'           => $doc->post_title,
+                        'status'          => $doc->post_status,
+                        'order'           => $doc->menu_order,
+                        'slug'            => $doc->post_name,
+                        'include_pages'   => $include_pages,
+                        'exclude_pages'   => $exclude_pages,
                         'include_page_id' => $include_slected_ids,
                         'exclude_page_id' => $exclude_slected_ids,
-                        'caps'          => [
+                        'caps'            => [
                             'edit'   => current_user_can( $post_type_object->cap->edit_post, $doc->ID ),
                             'delete' => current_user_can( $post_type_object->cap->delete_post, $doc->ID ),
                         ],

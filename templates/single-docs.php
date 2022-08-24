@@ -8,10 +8,10 @@
     $template = get_theme_mod( 'single_doc_template', 'template-01' );
 
 
-    $class = 'ud-container';
+    $class = 'ultd--container';
     
     if ( 'template-01' == $template) {
-        $class = 'ud-container-fluid';
+        $class = 'ultd--container-fluid';
     }
  
     while ( have_posts() ) {
@@ -25,17 +25,17 @@
                 ?>
 
                     <div class="<?php echo esc_attr( $class. ' '. $template ) ?>" >
-                        <div class="ud-single-wrap">
+                        <div class="ultd--single-wrap">
                         <?php 
-                            $template = apply_filters( 'ud_include_single_template', UD_DIR.'templates/single-template/' . $template .'.php' );
+                            $template = apply_filters( 'ultd__include_single_template', ULTD_DIR.'templates/single-template/' . $template .'.php' );
                                if($template){
                                    include $template;
                                }
                         ?>  
-                        </div><!-- .ud-single-wrap -->
+                        </div><!-- .ultd--single-wrap -->
                     </div>
             <?php elseif('doc' == $doc_type): 
-                include UD_DIR.'templates/sections.php';
+                include ULTD_DIR.'templates/sections.php';
             endif; ?>
     <?php } ?>
 <?php get_footer(); ?>
