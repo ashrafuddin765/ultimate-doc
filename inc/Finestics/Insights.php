@@ -1,5 +1,6 @@
 <?php
 namespace Finestics;
+// phpcs:ignoreFile
 
 /**
  * Finestics Insights
@@ -378,7 +379,7 @@ class Insights {
             $notice .= 'We are using Finestics to collect your data. <a href="' . $policy_url . '">Learn more</a> about how Finestics collects and handle your data.</p>';
 
             echo '<div class="updated"><p>';
-            echo $notice;
+            printf( $notice );
             echo '</p><p class="submit">';
             echo '&nbsp;<a href="' . esc_url( $optin_url ) . '" class="button-primary button-large">' . $this->client->__trans( 'Allow' ) . '</a>';
             echo '&nbsp;<a href="' . esc_url( $optout_url ) . '" class="button-secondary button-large">' . $this->client->__trans( 'No thanks' ) . '</a>';
